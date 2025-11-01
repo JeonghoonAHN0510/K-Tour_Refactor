@@ -1,0 +1,65 @@
+plugins {
+    id 'java'
+    id 'war'
+    id 'org.springframework.boot' version '3.5.7'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'org.example'
+version = '0.0.1-SNAPSHOT'
+description = 'K-Tour_Refactor'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // 스프링 웹
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // 웹서버 소켓 라이브러리 설치
+    implementation 'org.springframework.boot:spring-boot-starter-websocket'
+
+    // lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // mySql
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // myBatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+
+    // JSOUP
+    implementation 'org.jsoup:jsoup:1.21.2'
+
+    // 셀레니움
+    implementation 'org.seleniumhq.selenium:selenium-java:4.35.0'
+
+    // 셀레니움 브라우저 매니저 (크롬)
+    implementation 'io.github.bonigarcia:webdrivermanager:6.3.1'
+
+    // 비크립트( 암호화 )
+    implementation 'org.springframework.security:spring-security-crypto:6.4.4'
+
+    //파이어베이스
+    implementation 'com.google.firebase:firebase-admin:9.7.0' // 버전은 최신 확인 필요
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
