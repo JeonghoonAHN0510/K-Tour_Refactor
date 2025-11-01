@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ktour.model.mapper.PlaceInfoMapper">
+
+    <!-- ========================================================= -->
+    <!-- 공통 WHERE: PlaceInfoCriteria 기반 동적 조건                -->
+    <!--  - 주소: addr1 만 LIKE                                     -->
+    <!--  - 카테고리: categoryCode(레벨1/2/3) 한 개로 하위 포함        -->
+    <!-- ========================================================= -->
+    <sql id="PlaceInfoCriteriaWhere">
+        <where>
+            <if test="criteria != null">
+
+                <!-- 제목 LIKE -->
+                <bind name="titleVal" value="criteria.title != null ? criteria.title.trim() : null"/>
+                <if test="titleVal != null and titleVal != ''">
+                    AND pi.title LIKE CONCAT('%', #{titleVal}, '%')
+                </if>
+
+                <!-- 주소 LIKE: addr1 만 -->
+                <bind name="addrVal" value="criteria.address != null ? criteria.address.trim() : null"/>
+                <if test="addrVal != null and addrVal != ''">
+                    AND pi.addr1 LIKE CONCAT('%', #{addrVal}, '%')
+                </if>
+
+                <!-- 카테고리: categoryCode 하나로 레벨1/2/3 모두 수용 -->
+                <bind name="catCode" value="criteria.categoryCode != null ? criteria.categoryCode.trim() : null"/>
+                <if test="catCode != null and catCode != ''">
+                    AND (
+                    (CHAR_LENGTH(#{catCode}) = 2 AND cc.lclsSystm1Cd = #{catCode})
+                    OR
+                    (CHAR_LENGTH(#{catCode}) = 4 AND cc.lclsSystm2Cd = #{catCode})
+                    OR
+                    (CHAR_LENGTH(#{catCode}) = 6 AND cc.lclsSystm3Cd LIKE CONCAT(#{catCode}, '%'))
+                    )
+                </if>
+
+                <!-- 그 외 숫자/불리언 필터 (nullable 권장) -->
+                <if test="criteria.ctNo != null">
+                    AND pi.ctNo = #{criteria.ctNo}
+                </if>
+
+                <if test="criteria.pNo != null">
+                    AND pi.pNo = #{criteria.pNo}
+                </if>
+
+                <!-- 항상 공개 항목만 조회 -->
+                AND pi.showflag = 1
+
+            </if>
+        </where>
+    </sql>
+
+    <!-- ========================================================= -->
+    <!-- 공통 ORDER BY: PageRequest.sort 화이트리스트               -->
+    <!--  * 조인 별칭 반영: pi.* 만 정렬 허용(안전)                -->
+    <!-- ========================================================= -->
+    <sql id="PlaceInfoOrderBy">
+        <choose>
+            <when test="page != null and page.sort != null and page.sort.orderBy != null">
+                <choose>
+                    <!-- 실제 존재하는 placeinfo 컬럼만 허용 -->
+                    <when test="page.sort.orderBy == 'pNo'">ORDER BY pi.pNo</when>
+                    <when test="page.sort.orderBy == 'title'">ORDER BY pi.title</when>
+                    <when test="page.sort.orderBy == 'showflag'">ORDER BY pi.showflag</when>
+                    <when test="page.sort.orderBy == 'contentid'">ORDER BY pi.contentid</when>
+                    <when test="page.sort.orderBy == 'ctNo'">ORDER BY pi.ctNo</when>
+                    <when test="page.sort.orderBy == 'ldNo'">ORDER BY pi.ldNo</when>
+                    <when test="page.sort.orderBy == 'ccNo'">ORDER BY pi.ccNo</when>
+                    <when test="page.sort.orderBy == 'addr1'">ORDER BY pi.addr1</when>
+                    <when test="page.sort.orderBy == 'addr2'">ORDER BY pi.addr2</when>
+                    <otherwise>ORDER BY pi.pNo DESC</otherwise>
+                </choose>
+                <choose>
+                    <when test="page.sort.direction == 'DESC'">DESC</when>
+                    <otherwise>ASC</otherwise>
+                </choose>
+            </when>
+            <otherwise>
+                ORDER BY pi.pNo DESC
+            </otherwise>
+        </choose>
+    </sql>
+
+    <!-- ========================================================= -->
+    <!-- COUNT: 검색 총 레코드 수                                  -->
+    <!--  * categorycode 조인 포함(카테고리 조건 반영용)           -->
+    <!-- ========================================================= -->
+    <select id="countForSearch" resultType="int" parameterType="ktour.model.criteria.PlaceInfoCriteria">
+        SELECT COUNT(*)
+        FROM placeInfo pi
+        LEFT JOIN contenttype  c1 ON pi.ctNo = c1.ctNo
+        LEFT JOIN categoryCode c2 ON pi.ccNo = c2.ccNo
+        LEFT JOIN ldongCode    ld ON pi.ldNo = ld.ldNo
+        <where>
+            <if test="criteria.title != null and criteria.title != ''">
+                AND pi.title LIKE CONCAT('%', #{criteria.title}, '%')
+            </if>
+            <if test="criteria.address != null and criteria.address != ''">
+                AND pi.addr1 LIKE CONCAT('%', #{criteria.address}, '%')
+            </if>
+            <if test="criteria.ccName != null and criteria.ccName != ''">
+                AND c2.lclsSystm3Cd LIKE CONCAT('%', #{criteria.ccName}, '%')
+            </if>
+            <if test="criteria.ldName != null and criteria.ldName != ''">
+                AND pi.addr1 LIKE CONCAT('%', #{criteria.ldName}, '%')
+            </if>
+            <if test="criteria.ctNo != null">
+                AND pi.ctNo = #{criteria.ctNo}
+            </if>
+            <if test="criteria.pNo != null">
+                AND pi.pNo = #{criteria.pNo}
+            </if>
+            <!-- 항상 공개 항목만 조회 -->
+            AND pi.showflag = 1
+        </where>
+    </select>
+
+    <!-- ========================================================= -->
+    <!-- LIST: 검색 + 페이징 + 정렬                                -->
+    <!--  * DTO 매핑은 resultType 또는 resultMap으로 맞추세요       -->
+    <!-- ========================================================= -->
+    <select id="searchPaged" resultType="ktour.model.dto.PlaceInfoDto" parameterType="map">
+        SELECT
+        pi.*,
+        c1.contentTypeName AS contentTypeName,
+        c2.lclsSystm3Nm    AS lclsSystm3Nm,
+        c2.lclsSystm3Cd   AS lclsSystm3Cd
+        FROM placeInfo pi
+        LEFT JOIN contenttype  c1 ON pi.ctNo = c1.ctNo
+        LEFT JOIN categoryCode c2 ON pi.ccNo = c2.ccNo
+        LEFT JOIN ldongCode    ld ON pi.ldNo = ld.ldNo
+        <where>
+            <if test="criteria.title != null and criteria.title != ''">
+                AND pi.title LIKE CONCAT('%', #{criteria.title}, '%')
+            </if>
+            <if test="criteria.address != null and criteria.address != ''">
+                AND pi.addr1 LIKE CONCAT('%', #{criteria.address}, '%')
+            </if>
+            <if test="criteria.ccName != null and criteria.ccName != ''">
+                AND c2.lclsSystm3Cd LIKE CONCAT('%', #{criteria.ccName}, '%')
+            </if>
+            <if test="criteria.ldName != null and criteria.ldName != ''">
+                AND pi.addr1 LIKE CONCAT('%', #{criteria.ldName}, '%')
+            </if>
+            <if test="criteria.ctNo != null">
+                AND pi.ctNo = #{criteria.ctNo}
+            </if>
+            <if test="criteria.pNo != null">
+                AND pi.pNo = #{criteria.pNo}
+            </if>
+            <!-- 항상 공개 항목만 조회 -->
+            AND pi.showflag = 1
+        </where>
+        ORDER BY pi.pNo DESC
+        LIMIT  #{pageRequest.limit}
+        OFFSET #{pageRequest.offset}
+    </select>
+
+    <!-- ========================================================= -->
+    <!-- findAllPaged 검색 조건이 없는 조회                          -->
+    <!-- ========================================================= -->
+    <select id="findAllPaged"
+            parameterType="map"
+            resultType="ktour.model.dto.PlaceInfoDto">
+        SELECT
+            pi.*,
+            c1.contentTypeName  AS contentTypeName,
+            c2.lclsSystm3Nm     AS lclsSystm3Nm
+            FROM placeInfo pi
+            LEFT JOIN contenttype c1
+            ON pi.ctNo = c1.ctNo
+            LEFT JOIN categoryCode c2
+            ON pi.ccNo = c2.ccNo
+            WHERE pi.showflag = 1
+            ORDER BY pi.pNo DESC
+        LIMIT  #{pageRequest.limit}
+        OFFSET #{pageRequest.offset}
+    </select>
+
+    <select id="searchPlacesByUsers">
+        SELECT kpi.pNo, kpi.title, kpi.addr1, kpi.addr2, kpi.tel, kpi.firstimage2, kcc.lclsSystm3Nm, kmg.mapx, kmg.mapy, kpi.ctNo,
+               ST_Distance_Sphere(POINT(kmg.mapx, kmg.mapy), -- DB에 저장된 장소의 좌표
+                                  POINT(#{lng}, #{lat})         -- API로 전달받은 사용자의 현재 좌표
+                                  ) AS distance
+        FROM placeinfo kpi
+        JOIN markersgps kmg
+        USING (pNo)
+        JOIN categorycode kcc
+        USING (ccNo)
+        WHERE kpi.showflag = 1
+          AND (
+            kpi.title   LIKE CONCAT('%', #{keyword}, '%')
+         OR kpi.addr1   LIKE CONCAT('%', #{keyword}, '%')
+         OR kpi.addr2   LIKE CONCAT('%', #{keyword}, '%')
+         OR kpi.overview LIKE CONCAT('%', #{keyword}, '%')
+          )
+        ORDER BY distance
+        LIMIT 10;
+    </select>
+</mapper>

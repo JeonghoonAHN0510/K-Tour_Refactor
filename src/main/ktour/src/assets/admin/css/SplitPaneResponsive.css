@@ -1,0 +1,41 @@
+/* 기존 충돌 규칙 제거:
+   .bothWrap section{ flex:0 0 50%; }  /  resize: horizontal;  */
+
+.admin-scope .split-responsive { display: flex; height: 100%; min-width: 0; }
+
+/* 좌측은 CSS 변수(% )로 폭 결정, px로 최소/최대 보장 */
+.admin-scope .split-responsive .listWrap {
+  flex: 0 0 var(--leftPct, 40%);
+  min-width: 240px;                 /* 좌측 최소(px) */
+  max-width: calc(100% - 320px);    /* 우측 최소(px) 보장 */
+  overflow: auto;
+  border-right: 1px solid #e7e7e7;
+}
+
+/* 가운데 드래그 바(히트영역 8px) */
+.admin-scope .split-responsive .splitter {
+  width: 8px;
+  cursor: col-resize;
+  user-select: none;
+  background: linear-gradient(to bottom, transparent, rgba(0,0,0,.10), transparent);
+}
+.admin-scope .split-responsive .splitter:hover { background-color: rgba(0,0,0,.14); }
+
+/* 우측은 남는 영역 채움 */
+.admin-scope .split-responsive .registWrap {
+  flex: 1 1 auto;
+  min-width: 320px;
+  overflow: auto;
+}
+
+/* 반응형 예시(브레이크포인트) */
+@media (max-width: 1100px) {
+  .admin-scope .split-responsive { flex-direction: column; }
+  .admin-scope .split-responsive .listWrap {
+    flex: 0 0 auto;
+    min-width: 0; max-width: none; width: 100%;
+    border-right: 0; border-bottom: 1px solid #e7e7e7;
+  }
+  .admin-scope .split-responsive .splitter { height: 8px; width: 100%; cursor: row-resize; }
+  .admin-scope .split-responsive .registWrap { min-width: 0; }
+}

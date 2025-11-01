@@ -1,0 +1,14 @@
+/* CSS reset */
+*{ margin: 0; padding: 0; box-sizing: border-box; /*font-family: "맑은 고딕", sans-serif; */ }
+li{ list-style: none; } 
+button{ cursor:pointer; }
+a{ text-decoration: none; color: rgba(0,0,0,.9);}
+body{ background: rgba(0,0,0,.04); }
+input[type=radio], input[type=checkbox]{ width: 20px; height: 20px; vertical-align:-30% }
+input, button, select{ margin: 2px 0px; padding:2px;  vertical-align: middle; border-radius: 3px; border:solid 1px rgba(0,0,0,.2); font-size: 12px; }
+input[type='file']{ cursor:pointer; padding: 1px 3px;  font-size: 11px; margin-left: 4px; }
+button{ cursor:pointer; padding: 1px 3px;  font-size: 11px;  }
+select{ margin-left: 0px; min-width: 100px; padding: 1px 3px; }
+textarea{  width: 370px; height: 30px; margin-left: 0px; font-size: 12px; padding: 5px; font-size: 12px; border:solid 1px rgba(0,0,0,.2); border-radius: 3px; }
+input[type='text']{ width: 100px;}
+.input100{ width: 40% !important; }

@@ -1,0 +1,78 @@
+/* 인포윈도우의 전체 컨테이너 */
+.user-scope .iw-container {
+    z-index: 500;
+    padding: 10px 15px;
+    min-width: 280px;
+    max-width: 380px;
+    line-height: 1.5;
+}
+
+/* 상단 (제목, 카테고리) */
+.user-scope .iw-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin: 0 0 8px 0;
+    padding: 0;
+}
+
+/* 장소 이름 (제목) */
+.user-scope .iw-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2170C3;
+    margin-right: 9px;
+}
+
+/* 장소 카테고리 (음식점, 관광지 등) */
+.user-scope .iw-category {
+    font-size: 0.8rem;
+    color: #888;
+    white-space: nowrap;
+    /* 줄바꿈 방지 */
+}
+
+/* 주소 텍스트 */
+.user-scope .iw-address {
+    font-size: 0.8rem;
+    color: #555;
+    display: block;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* 사용자 현재 위치를 위한 pulsing(맥박) 애니메이션 */
+@keyframes pulse {
+    0% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7);
+    }
+
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+        box-shadow: 0 0 0 10px rgba(255, 0, 0, 0);
+    }
+
+    100% {
+        transform: scale(0.9);
+        opacity: 0.7;
+        box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+}
+
+.user-location-dot {
+    width: 18px;
+    height: 18px;
+    background-color: #ff0101ff;
+    border-radius: 50%;
+    border: 2px solid white;
+
+    /* 애니메이션 적용 */
+    animation: pulse 2s infinite;
+    /* 2초간 무한 반복 */
+
+    /* 그림자가 원 밖으로 보이도록 */
+    overflow: visible;
+}

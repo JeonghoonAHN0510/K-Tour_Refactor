@@ -1,0 +1,52 @@
+/** 관리자단  >  공통레이아웃  >  해더(header) */ 
+.admin-scope header{ position:fixed; top:0; width:100%; margin:0 auto; display:flex; align-items:center; background:#fff; border-bottom:1px solid rgba(0,0,0,.1); z-index:300; padding:0 20px 0 10px; min-height:52px; }
+
+/* 해더  >  좌측 ( 로고/전체메뉴 ) */
+.admin-scope .logoHeader{ display:flex; align-items:center; width:170px; }
+.admin-scope .logoHeader .logo{ color:rgba(0,191,99,1); display:block; padding:0 20px 0 15px; }
+.admin-scope .logoHeader .logo strong{ display:block; font-size:20px; line-height:100%; font-weight:700; }
+.logoHeader .logo span{ display:block; padding:3px 0; font-size:10px; line-height:100%; font-weight:400; letter-spacing:-0.7px; }
+.admin-scope .menuIcon{ display:inline-block; cursor:pointer; opacity:.3; margin:-4px 0 0 2px; }
+.admin-scope .menuIcon svg{ fill:none; width:18px; height:18px; }
+.menuIcon svg path{ fill:currentColor; }
+
+/* 해더  >  중앙  >  검색창 */
+.admin-scope .headerSearch{ display:flex; justify-content:space-evenly; align-items:center; border:1px solid rgba(0,0,0,.15); border-radius:50px; padding:4px 5px 4px 7px; margin-left:0; }
+.admin-scope .headerSearch input[type='text'] {border:0; font-size:14px; font-weight:500; outline:none; padding:1px 5px; width:150px; }
+.admin-scope .headerSearch button{display:none; }
+.admin-scope .headerSearch svg{fill:none; font-size:14px; color:rgba(0,0,0,.6); }
+.admin-scope .headerSearch svg path{ stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+
+/* 해더  >  중앙  >  GNB(상단메뉴) */
+.admin-scope .gnb{ flex-grow:1; display:flex; justify-content:space-between; align-items:center; }
+.admin-scope nav > ul.menu1Depth{ position:relative; display:flex; justify-content:space-evenly; align-items:center; margin-left:-100px; z-index:301; background:#fff; }
+.admin-scope nav > ul.menu1Depth > li{ position:relative; transition:.2s ease; display:block; color:rgba(0,0,0,.7); font-weight:600; white-space:nowrap; }
+.admin-scope nav > ul.menu1Depth > li:first-child > a{ padding:18px 30px 18px 20px; }
+.admin-scope nav > ul.menu1Depth > li:last-child > a{ padding:18px 20px 18px 30px; }
+.admin-scope nav > ul.menu1Depth > li > a{ display:block; padding:18px 30px; font-size:15px; line-height:100%; transition:.2s ease; }
+.admin-scope nav > ul.menu1Depth > li.active > a{ color:rgba(0,191,99,1); }
+
+/* ========== 서브메뉴 기본 상태 (숨김) ========== */
+.admin-scope ul.menu2Depth{ display:none; position:absolute; top:100%; left:0; right:0; width:auto;  z-index:302; height:80px; font-size:12px;  line-height:160%; background: rgba(0,0,0,.03); transition:.2s ease;  overflow:hidden; border: solid 1px rgba(0,0,0,.1); border-width: 1px 1px 0 0; overflow: hidden;  transition: .2s ease; }
+.admin-scope nav > ul.menu1Depth > li:last-child ul.menu2Depth{ border-right:0; }
+.admin-scope ul.menu2Depth li a{ display:block;  opacity:.6; transition:.2s ease; text-align: center; padding: 7px 1px; }
+.admin-scope ul.menu2Depth li a:hover{ opacity:1; color:rgba(0,0,0,.9); background: #fff; }
+.admin-scope ul.menu2Depth li a.active{ background: rgb(235, 255, 245); color:rgba(0,191,99,1); font-weight:500; opacity:1; }
+
+/* ========== 대메뉴 hover 시: 모든 서브메뉴 표시 + 배경 보더 박스 ========== */
+
+/* 1) hover 또는 focus-within 시 전체 서브 표시 */
+.admin-scope nav > ul.menu1Depth:hover > li > ul.menu2Depth{ display:block;  transition: .2s ease;  }
+/* 2) 서브 전체를 감싸는 배경/보더 (헤더 고정 유지) */
+.admin-scope nav > ul.menu1Depth:hover::after{ transition: .2s ease; content:""; position:absolute; top:100%; left:0; width:100%; height:80px; background:#fff;  z-index:101;  overflow: hidden;  box-shadow:0 3px 3px rgba(0,0,0,.3); border-radius: 0 0 5px 5px; }
+
+/* 해더  >  우측  >  관리자 로그인 메뉴 */
+.admin-scope .memberMenu{ display:flex; justify-content:space-evenly; align-items:center; font-size:13px; }
+.admin-scope .memberMenu li{ padding-left:10px; }
+.admin-scope .memberMenu li a{ display:block; }
+.admin-scope .memberMenu li a b{ text-decoration:underline; }
+
+/* ========== 반응형 =========== */
+@media(max-width:1100px){
+    .admin-scope header nav{display:none; }
+}

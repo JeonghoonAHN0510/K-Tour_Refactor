@@ -1,0 +1,175 @@
+/* 전체 랩 */
+#container{ width: 100%; min-height: 100vh; display: flex; flex-direction: column; } 
+
+/* 1. 해더(header) */
+header{  position: fixed; top:0; width: 100%; margin: 0 auto; display: flex;  align-items: center; background: rgba(255,255,255,1); border-bottom: solid 1px rgba(0,0,0,.1); z-index: 10; padding: 5px 20px 5px 10px; }
+
+/* 1.1. 해더 우측 ( 로고/전체메뉴 ) */
+.logoHeader{ display: flex; align-items: center; width: 170px;   }
+.logoHeader .logo{ color: rgba(0, 191, 99, 1); display: block; padding:0 10px 0 15px; }
+.logoHeader .logo strong{ display: block;  font-size: 22px; line-height: 100%;  font-weight: 700; }
+.logoHeader .logo span{ display: block; padding:3px 0; font-size: 10px; line-height: 100%; font-weight: 400; letter-spacing:-0.7px; }
+.menuIcon{ display: inline-block;  cursor: pointer; padding: 3px 5px 0 1px; opacity: .4; }
+
+/* 1.2. 해더 좌측 (.gnb ) */
+.gnb{ flex-grow: 1; display: flex; justify-content: space-between; align-items: center;  }
+
+/* 1.2.1. 검색창 */
+.headerSearch form{ display: flex; justify-content: space-evenly; align-items: center; border:solid 1px rgba(0,0,0,.2); border-radius:30px; padding:4px 5px 4px 7px; margin-left:15px; }
+.headerSearch input{ border:0; font-size: 14px; font-weight: 500; outline:none; padding: 1px 5px; }
+.headerSearch button{ display: none; }
+
+/* 1.2.2. nav(GNB) */
+nav > ul.menu1Depth{  position: relative; display: flex; justify-content: space-evenly; align-items: center; margin-left: -130px;  z-index: 101; 
+}
+/* 서브 메뉴의 기준점을 위해 li에 position: relative 추가 */
+nav > ul.menu1Depth > li {
+    position: relative;
+}
+nav > ul.menu1Depth > li > a{ display: block; font-size: 14px; line-height: 100%; padding: 5px 30px; color: rgba(0,0,0,.7); font-weight: 600; word-break: break-all; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+nav > ul.menu1Depth > li.active > a{ color: rgba(0, 191, 99, 1); }
+
+/* 1.2.2. nav(GNB > 서브 메뉴) */
+ul.menu2Depth{  position: absolute;  top: 100%;  left:20%; min-width: 100px; z-index: 102;  background: #fff;  border: 1px solid rgba(0,0,0,.1); box-shadow: 0 4px 6px rgba(0,0,0,.1); display: none;  font-size: 12px; line-height: 160%;}
+ul.menu2Depth li a{ display:block; padding:5px 10px; }
+nav > ul.menu1Depth > li:hover > ul.menu2Depth {display: block; }
+
+
+/* 1.2.3. 멤버 로그인 메뉴 */
+.memberMenu{ display: flex; justify-content: space-evenly; align-items: center; font-size: 13px; }
+.memberMenu li{ padding-left: 10px;}
+.memberMenu li a{ display: block; }
+.memberMenu li a b{ text-decoration: underline; }
+/* 1.  해더(header) 끝  */
+
+
+/* 2.1. aside(좌측메뉴) */
+aside{ position: fixed; top:0; margin-top:49px; min-height: 100vh;  width: 180px; background: rgba(255,255,255,1); border-right: solid 1px rgba(0,0,0,.1); z-index: 1; }
+
+aside h2{ padding: 10px 5px 10px 12px; font-size: 18px; font-weight: 600; color: rgba(0,0,0,.9);  }
+aside > ul li.active a{ background: rgb(235, 255, 245); color: rgba(0, 191, 99, 1); font-weight: 600;}
+aside > ul li a{ display: block; padding: 5px 14px; font-size: 14px; font-weight: 500; color: rgba(0,0,0,.7); transition: .2s ease; }
+aside > ul li a:hover{ color: rgba(0, 191, 99, 1) }
+
+/* 2.2. main(우측본문) */
+.temp{ height:89px }
+main{  margin:0 0 0 180px;  }
+
+/* 2.2.1. 페이지 타이틀 */
+.pageTitle{ position: fixed; top:49px; width: 100%; margin:0 10px 0 0; display: flex;  align-items: flex-end;  background: rgba(255,255,255,1); border-bottom: solid 1px rgba(0,0,0,.1); padding: 5px 10px; z-index: 1; }
+.pageTitle h1{ padding: 5px 7px; font-size: 18px; line-height: 100%; font-weight: 600; color: rgba(0,0,0,.9); }
+.path{ display: inline-block;  font-size: 12px; margin-bottom: 3px; }
+.path::before{ content: 'Home'; padding: 0 3px;  }
+.path a::before{ content: '> '; color: rgba(0,0,0,.5); }
+
+
+/* 2.2.2. 페이지 본문 */
+/*  main(우측본문) > 양쪽 영역 */
+main section{ padding: 20px; }
+.bothWrap{ display: flex; align-items: stretch;  background: rgba(255,255,255,1); height: calc(100vh - 90px); overflow-y: hidden; }
+.bothWrap{
+    scrollbar-face-color:#ddd;/*스크롤*/
+    scrollbar-highlight-color:#ddd;/*하이라이트*/
+    scrollbar-3dlight-color:#ddd;/*왼쪽외곽음영*/
+    scrollbar-darkshadow-color:#ddd;/*오른쪽외곽음영*/
+    scrollbar-shadow-color:#ddd;/*오른쪽 안쪽음영*/
+    scrollbar-arrow-color:#ddd;/*화살*/
+    scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
+    /* overflow-x: auto; */
+}
+.bothWrap::-webkit-scrollbar{opacity:1;width:5px; height: 15px;}/*스크롤바*/
+.bothWrap::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
+.bothWrap::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2);  background-clip: padding-box;  border: 0px solid transparent;  border-radius: 10px;}/*스크롤바 핸들*/
+.bothWrap::-webkit-scrollbar-track{background-color:rgba(255,255,255,1);}/*스크롤바 진행줄*/
+.bothWrap::-webkit-scrollbar-track-piece{}/*진행줄에서 핸들로 덮이지 않은 영역 */
+.bothWrap::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
+
+
+
+
+.bothWrap section{  border-bottom: solid 1px rgba(0,0,0,.1); overflow: auto; flex: 0 0 50%; }
+.bothWrap section:last-child{ border-left: solid 1px rgba(0,0,0,.1); }
+.bothWrap section.listWrap
+
+/* 2.2.1. 페이지 타이틀 */
+.detailSearch{ display: flex; justify-content: space-between; align-items: center; padding: 10px 0; background: rgb(235, 255, 245); padding: 10px; font-size: 12px; line-height: 120%; border-radius: 10px; }
+.detailSearch > form > label{ display:inline-block; padding:  0 5px; font-weight: 600; color: rgba(0,0,0,.7); margin: 2px 3px 2px 0;}
+.detailSearch > form > label > b{ display:inline-block;  min-width: 60px; padding: 0 5px; font-size: 11px; }
+
+/* 스티키 테이블 */
+.tableWrap { position: relative; overflow: auto; width:100%; padding: 0; }
+.tableWrap table{  width: 100%; border-collapse: collapse; border-spacing: 0; font-size: 12px; line-height: 120%; color: rgba(0,0,0,.7); }
+.tableWrap table tbody tr:nth-child(odd){ background: rgba(0,0,0,.04); }
+.tableWrap table th, .tableWrap table td{ padding:5px 2px; border: solid 1px rgba(0,0,0,.1); border-width:1px 0; text-align: center; vertical-align: middle; }
+.tableWrap table th{  font-weight: 600; min-width: 70px; font-size: 11px;  }
+.tableWrap table th:first-child{  min-width:30px }
+.tableWrap table th.sticky{ position: sticky; top: 0; z-index: 1; }
+.tableWrap table td.sticky{ position: sticky; left: 0; z-index: 1; background: rgba(255,255,255,1); }       
+.tableWrap table tfoot th{ border: 0; }
+.tableWrap table tbody tr td a{ color:  rgba(0, 191, 99, 1); }
+.tableWrap table tbody tr:hover{ background: rgb(235, 255, 245); }
+.tableWrap table tbody tr.active{ background: hsla(145, 100%, 65%, 0.2); }
+.tableWrap table tbody tr.active td{ color: #000; }
+
+.tableWrap table tbody tr td b{ color: rgba(0, 191, 99, 1);}
+
+.registWrap{  overflow: auto;  }
+.titleBox{ display: flex; justify-content: space-between; align-items:top; font-size: 13px; padding: 10px 0 8px 3px; }
+.tabtitle{ display: flex;  }
+.registWrap .titleBox{ padding:0; }
+.tabtitle li{ padding:5px 10px; border: solid 1px rgba(0,0,0,.3); border-width:1px 1px 0px 1px; background: #ddd; margin-left: -3px; min-width: 80px; text-align: center; }
+.tabtitle li.active{  margin: -3px 0; border-top:solid 2px rgba(0, 191, 99, 1); border-bottom:solid 3px #eee; background:#eee; border-radius: 5px 5px 0 0; font-weight: 500; }
+.tabtitle li:last-child{ border-radius: 0 5px 0 0; }
+
+.formWrap{  background: rgba(0,0,0,.05); font-size: 12px; line-height: 160%; padding: 15px 14px; border: solid 1px rgba(0,0,0,.2); border-radius:0 5px 5px 5px; margin-bottom: 30px; height:  80vh; overflow-y: auto;  }
+
+.formWrap{
+    scrollbar-face-color:#ddd;/*스크롤*/
+    scrollbar-highlight-color:#ddd;/*하이라이트*/
+    scrollbar-3dlight-color:#ddd;/*왼쪽외곽음영*/
+    scrollbar-darkshadow-color:#ddd;/*오른쪽외곽음영*/
+    scrollbar-shadow-color:#ddd;/*오른쪽 안쪽음영*/
+    scrollbar-arrow-color:#ddd;/*화살*/
+    scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
+    /* overflow-x: auto; */
+}
+.formWrap::-webkit-scrollbar{opacity:1;width:5px; height: 15px;}/*스크롤바*/
+.formWrap::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
+.formWrap::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2);  background-clip: padding-box;  border: 0px solid transparent;  border-radius: 10px;}/*스크롤바 핸들*/
+.formWrap::-webkit-scrollbar-track{background-color:rgba(255,255,255,1);}/*스크롤바 진행줄*/
+.formWrap::-webkit-scrollbar-track-piece{}/*진행줄에서 핸들로 덮이지 않은 영역 */
+.formWrap::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
+
+.formWrap h2{ padding: 0 0 10px; font-size:14px; letter-spacing:-0.7px; opacity:.8 }
+.formWrap form fieldset{ border: 0; justify-content: space-between; flex:1 1 30%; }
+.formWrap label { display: inline-block; margin: 2px 0; vertical-align: top; }
+.formWrap label b{ display: inline-block; min-width: 75px; vertical-align: top; padding: 2px 3px 0; opacity: .6; }
+.formWrap p{ padding: 10px 0; }
+ 
+/*  main(우측본문) > 하단 영역 */
+.detaiViewWrap .titleBox{ padding: 0 0 0 0; }
+.detaiViewWrap .tabtitle li.active{ background:rgba(255,255,255,1); border-bottom-color: #fff; }
+.viewWrap{  background: rgba(255,255,255,1); font-size: 12px; line-height: 100%; padding: 15px; border: solid 1px rgba(0,0,0,.2); border-radius:0 5px 5px 5px; width:100%; min-height: 300px; }
+
+
+
+/* 2. 중앙본문(#contentsWrap) 끝  */
+
+/* 3. 푸터(footer) */
+footer{  position: fixed; bottom:0; width:100%; margin: 0 auto; padding: 0 10px 4px; background: rgba(255,255,255,1); border-top: solid 1px rgba(0,0,0,.1); z-index: 1;}
+small{ font-size: 12px; font-weight: 500; color: rgba(0,0,0,.5); }
+
+
+/* place info */
+.preview_map{ border:solid 1px rgba(0,0,0,.05); height: 200px; margin: 0 auto 10px; text-align: center; background: rgba(0,0,0,.2); border-radius: 5px;}
+
+
+/* ========== 반응형 =========== */
+ @media (max-width: 1200px){
+    nav { display: none; } 
+    aside{ display: none;}
+    main{  margin:0;  }
+    .memberMenu li a span{ display: none; } 
+    .bothWrap{ display: flex; flex-direction: column; }
+    .bothWrap section:last-child{  border-left: 0; } 
+ }

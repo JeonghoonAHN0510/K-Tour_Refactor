@@ -1,0 +1,31 @@
+/* #container */
+/* #container{ } backdrop-filter:blur(10px); */
+
+/* header */
+header{  display: contents; }
+.stickyHeader{ position: sticky; top:0;  max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 10px; }
+.stickyHeader > .logo a{ font-size: 24px; color: rgba(0, 191, 99, 1); }
+.stickyHeader > .logo a span{ display:block;  font-size:11px;  line-height: 100%;  letter-spacing: -1px; }
+.stickyHeader::before{ content: ""; position: fixed; top: 0; left: 0; width: 100%; height: 90px; background: linear-gradient(to bottom, #f2f2f2 55%, rgba(0, 0, 0, 0));  z-index: -1; }
+
+.stickyHeader > nav > ul{ display: flex;  justify-content: space-between; align-items: center; }
+.stickyHeader > nav > ul li a{ display: block; padding: 10px 30px; font-size: 18px; line-height: 100%;  font-weight: 700; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-break: break-all; }
+
+.stickyHeader > .memberMenu{ display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.stickyHeader > .memberMenu li a{ display:block; padding:0 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; word-break: break-all; }
+.stickyHeader > .memberMenu li.menu_icon a{ display:block; padding:5px 0 0 10px; }
+
+
+/* main */
+main{  max-width: 1200px; margin: 40px auto; min-height: 500px;  }
+.mainText{ text-align: center; margin: 30px auto 0; }
+
+/* footer */
+footer{  max-width: 1000px; margin: 0 auto; padding: 20px; text-align: center; color: rgba(0,0,0,.5); }
+.footerMenu{ display: flex; justify-content: center; align-items: center; font-size: 14px; }
+.footerMenu li a{ display: block; padding: 10px;  color: rgba(0, 191, 99, 1); font-weight: 700; }
+address{ font-size: 14px; font-style: normal; }
+address span{ display: inline-block; padding: 1px 5px; }
+address span::after{ content: ""; display: block; width: 1px; height: 13x; background: rgba(0,0,0,.3);  }
+address a{ color: rgba(0,0,0,.5);}
+small{ font-size: 13px; font-weight: 500; padding: 10px 0; display: block; color: rgba(0,0,0,.5); }

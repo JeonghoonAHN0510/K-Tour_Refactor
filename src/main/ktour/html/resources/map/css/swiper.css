@@ -1,0 +1,4 @@
+/* 페이지네이션 컨테이너 스타일 */
+swiper-container {  padding:0; width: 100%; height:100%;  }
+swiper-slide { width: 100%; height:100%; }
+swiper-slide img { display: block; width: 100%;}

@@ -1,0 +1,34 @@
+header{ display: flex; justify-content: center; align-items: center; margin-top:5%; text-align:  center; }
+header > .logo a{ font-size: 30px; color: rgba(0, 191, 99, 1); }
+header > .logo a span{ display:block;  font-size:18px;  line-height: 100%;  letter-spacing: -1px; }
+
+.loginWrap{ max-width: 400px; background: rgba(255,255,255,1); margin: 20px auto; padding: 50px; border-radius: 30px; box-shadow: 0 0 10px rgba(0,0,0,.1); }
+.loginWrap > h2{ text-align: center; font-size: 30px;  color: rgbs(0,0,0,.5); }
+.loginWrap > p{ font-size: 15px; margin:8px 0 20px; color: rgbs(0,0,0,.5); text-align: center; letter-spacing: -0.5px; }
+.loginWrap > p a{ color:  rgba(0, 191, 99, 1); font-weight: 500; color: rgbs(0,0,0,.4);  }
+
+.loginWrap form > section{ display: flex; flex-wrap:wrap; justify-content: space-evenly; padding: 10px 0; align-items: center}
+.loginWrap form > section > label, .loginWrap form > section > span{ flex: 1 1 20%; width:100%; margin:5px 0; padding: 13px; font-weight: 500; }
+.loginWrap form > section > input, .loginWrap form > section > div{ flex: 1 1 70%; width:100%; margin:5px 0;  }
+.loginWrap form > section > input{  font-size:16px; padding: 13px 20px; border-radius:20px; border:0; background: rgba(0,0,0,.1); }
+.loginWrap form > section > div{ padding: 10px 0; }
+.loginWrap form > section > div b{ font-weight: 500; display: inline-block; padding: 0 5px 0 25px; }
+.loginWrap form button{ flex: 1 1 100%; width:100%; margin:5px 0; padding: 10px; border-radius:30px; border:0; background: rgba(0,0,0,.1); font-size: 18px; font-weight:500; color:rgba(0,0,0,.5); letter-spacing:1px; }
+
+.loginWrap form #userTypeInput{ display: flex; justify-content: space-between; align-items: center; }
+.loginWrap form #userTypeInput > button{ font-size: 14px; margin:0; }
+
+.loginWrap form #userTypeInput > button:nth-child(2){ margin:0 10px; }
+.loginWrap form #userTypeInput > button.selected, .loginWrap form button[type="submit"]{ background: rgba(0, 191, 99, 1); color: #fff; }
+
+.loginWrap form > section > input:focus {  background: rgba(235, 255, 245, 1); outline-color: rgba(0, 191, 99, 1);  } 
+
+/* footer */
+footer{  margin: 0 auto; text-align: center; color: rgba(0,0,0,.5); }
+.footerMenu{ display: flex; justify-content: center; align-items: center; font-size: 13px; }
+.footerMenu li a{ display: block; padding:7px 5px;  color: rgba(0,0,0,.7); margin:3px; color: rgba(0, 191, 99, 1);  font-weight: 500;  /*  border:solid 1px rgba(0,0,0,.2); border-radius: 20px;  background: rgba(255, 255, 255, 1); */ } 
+.footerMenu li a:hover{ text-decoration: underline;}
+address{ font-size: 14px; font-style: normal; }
+address span{ display: inline-block; padding: 1px 5px; }
+address span::after{ content: ""; display: block; width: 1px; height: 13x; background: rgba(0,0,0,.3);  }
+small{ font-size: 13px; display: block; color: rgba(0,0,0,.5);  font-weight: 500; padding-bottom: 30px; }

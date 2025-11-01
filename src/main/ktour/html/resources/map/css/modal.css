@@ -1,0 +1,28 @@
+/* 모달 레이어 */
+.modal_marker_info_layer{ position:fixed; top: 0; right: 0;  width:25%; min-width:380px; height: 100%; z-index: 99999999;display: none; }
+.modal_box{ position: relative;  height: 100%; background: #fff;  box-shadow: 5px 5px 5px rgba(0,0,0,.3); font-size: 13px; border-left:solid 1px rgba(0,0,0,.3); display: flex;
+    flex-direction: column; }
+
+/* 닫기 버튼 */
+button.modal_close{ font-size: 35px; position: absolute; top:10px; right:10px; background: none; padding: 0; border: 0; outline: 0; opacity: .7; color:#009900; }
+button.modal_close:hover{ opacity: .99; }
+
+/* 상단 대표 이미지 */
+.modal_img_bg{  max-height:270px; overflow: hidden; }
+.modal_img_box img{ width: 100%; max-height:250px;  object-fit: cover;   /* cover / contain / fill */object-position: center; display: block; }
+
+/* 모달 콘텐츠 개요 */
+.modal_content_outline{ margin: 10px 20px 0px; padding-bottom:7px; border-bottom:solid 1px rgba(0,0,0,.2)  }
+.modal_content_outline h3{ font:600 20px/26px 'Noto Sans KR', SansSerif; letter-spacing:-1px; }
+
+/* 추가사진이미지 */
+.addition_img_wrap{ display: flex; justify-content: space-between; align-items: center;  flex-wrap: wrap; }
+.addition_img_wrap li{ padding: 2px 3px; width: 50%; }
+.addition_img_wrap img{ width: 100%; max-height: 130px; border-radius: 3px; display: block; }
+
+/* 모달 콘텐츠 본문 */
+.modal_content{ min-height: 0; padding:10px 20px 50px; overflow-y:auto; }
+.modal_content h4{ font:600 16px/24px 'Noto Sans KR', SansSerif; letter-spacing:-1px; padding: 20px 0 5px; }
+.modal_content ul li{ display: flex; }
+.modal_content ul li b{ display: inline-block; min-width: 70px; color:rgb(19, 121, 19); }
+.modal_content ul li a{ text-decoration: underline; color: rgb(25, 74, 233); }

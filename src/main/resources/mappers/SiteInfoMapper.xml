@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="ktour.model.mapper.SiteInfoMapper">
+    <select id="searchSites" parameterType="ktour.model.criteria.SiteInfoCriteria">
+<!--       SELECT * FROM siteinfo JOIN manager USING (siNo)-->
+        SELECT * FROM siteinfo
+            <where>
+                <if test="siIsPublic != null">
+                    AND siIsPublic = #{siIsPublic}
+                </if>
+                <if test="siDomain != null">
+                    AND siDomain LIKE CONCAT('%', #{siDomain}, '%')
+                </if>
+                <if test="siName != null">
+                    AND siName LIKE CONCAT('%', #{siName}, '%')
+                </if>
+            </where>
+<!--            LIMIT #{startRow}, #{pageSize}-->
+    </select>
+</mapper>

@@ -1,0 +1,28 @@
+/* 좌측 하단 배너(팝업) */
+.user-scope .popupBannerWrap{
+  position: fixed; left: 0; bottom: 30px; z-index: 10000000000;
+  overflow: hidden; width: 279px; height: 200px;
+}
+
+/* 캐러셀 아이템 높이를 래퍼에 맞춤 */
+.user-scope .popupBannerWrap .carousel-inner { height: 200px; }
+.user-scope .popupBannerWrap .carousel-item { height: 100%; }
+
+/* 기존 dt/dd 규칙 유지하되, 이미지 absolute 제거 */
+.user-scope .popupBannerWrap .popupBanne { margin: 0; }
+.user-scope .popupBannerWrap .popupBanne > dt { height: 100%; margin: 0; }
+.user-scope .popupBannerWrap .popupBanne > dt > img{
+  /* position: absolute;  ← 삭제 */
+  display: block;                  /* 이미지 주변 공백 제거 */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;             /* ← 전체 보이도록, 잘림 없음 */
+  object-position: center;         /* 가운데 정렬 */
+  background-color: transparent;   /* 필요시 여백 색상 변경 가능 */
+  border-top: 1px solid rgba(0,0,0,.2);
+  image-rendering: auto;
+}
+.user-scope .popupBannerWrap .popupBanne > dt > span{ display: none; }
+.user-scope .popupBannerWrap .popupBanne > dd{ display: none; }
+
+

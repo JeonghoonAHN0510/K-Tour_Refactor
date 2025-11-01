@@ -1,0 +1,74 @@
+/* 좌측메뉴  */
+.user-scope .gnbWrap{ position:fixed; top:180px; left: 0px; z-index:9999999; /* width: 14.6%; */ min-width: 280px;  border:solid 1px rgba(0,0,0,.3); border-width:1px 1px 0 ; border-top-color: rgba(0,0,0,.15); min-height: 0; display: flex; flex-direction: column;
+    background:rgba(255,255,255,1); font-size: 12px; box-shadow: 0px 5px rgba(0,0,0,.4); /*box-shadow: 1px 0px 2px rgba(0,0,0,.3)*/  }
+/* .user-scope .gnbWrap:before{ content:""; display: block; width: 1px; height: 200%; background: rgba(0,0,0,.15); position: absolute; top:0; left:90px } */
+.user-scope .gnbWrap:after{ content:""; display: block; clear:both; }
+
+.user-scope .gnbWrap{  overflow-y: auto; overflow-x:hidden; height: calc(100% - 370px); }
+.user-scope .gnbWrap{
+    scrollbar-face-color:#ddd;/*스크롤*/
+    scrollbar-highlight-color:#ddd;/*하이라이트*/
+    scrollbar-3dlight-color:#ddd;/*왼쪽외곽음영*/
+    scrollbar-darkshadow-color:#ddd;/*오른쪽외곽음영*/
+    scrollbar-shadow-color:#ddd;/*오른쪽 안쪽음영*/
+    scrollbar-arrow-color:#ddd;/*화살*/
+    scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
+    /* overflow-x: auto; */
+}
+.user-scope .gnbWrap::-webkit-scrollbar{opacity:1;width:5px; height: 15px;}/*스크롤바*/
+.user-scope .gnbWrap::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
+.user-scope .gnbWrap::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2);  background-clip: padding-box;  border: 0px solid transparent;  border-radius: 10px;}/*스크롤바 핸들*/
+.user-scope .gnbWrap::-webkit-scrollbar-track{background-color:rgba(255,255,255,1);}/*스크롤바 진행줄*/
+.user-scope .gnbWrap::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
+
+
+.user-scope .gnb{ position: fixed; top:181px; left:0px; width: 91px; z-index: 99; background: #fff; /*border-right: solid 1px rgba(0,0,0,.1);*/ transition: .2s ease; height:calc(100% - 400px); transition: .2s ease; overflow-y:auto; overflow-x: hidden;}
+.user-scope .gnb:before{ content:""; display: block; width: 1px; height: 100%; background: rgba(0,0,0,.15); position: absolute; top:0; left:90px }
+.user-scope .main .gnb{ top:0px; width: 50px; }
+@media (max-height: 800px) {
+    .user-scope .gnb { 
+        scrollbar-face-color:#ddd;/*스크롤*/
+        scrollbar-highlight-color:#ddd;/*하이라이트*/
+        scrollbar-3dlight-color:#ddd;/*왼쪽외곽음영*/
+        scrollbar-darkshadow-color:#ddd;/*오른쪽외곽음영*/
+        scrollbar-shadow-color:#ddd;/*오른쪽 안쪽음영*/
+        scrollbar-arrow-color:#ddd;/*화살*/
+        scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
+    }
+    .user-scope .gnb::-webkit-scrollbar{opacity:1; width:5px; height: 15px;}/*스크롤바*/
+    .user-scope .gnb::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
+    .user-scope .gnb::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2); background-clip: padding-box;  border: 0px solid transparent;  border-radius: 10px;}/*스크롤바 핸들*/
+    .user-scope .gnb::-webkit-scrollbar-track{background-color:rgba(255,255,255,1);}/*스크롤바 진행줄*/
+    .user-scope .gnb::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
+   
+}
+
+.user-scope .gnb ul{ min-height: 400px; font-family: "Malgun Gothic" ,"맑은고딕" ,Sans-serif, Roboto, Arial; }
+.user-scope .gnb ul li{ padding: 15px 0; word-break: initial; cursor: pointer; text-transform:uppercase; text-align: center; opacity:.7; text-align: center; letter-spacing: -0.2px; text-align: center; opacity: .6; }
+.user-scope .gnb ul li svg{ display: block; margin: 0 auto 7px; font-size: 20px; font-weight: 400;  opacity:.9;  }
+.user-scope .gnb ul li:hover{ opacity:1; background: rgba(0,0,0,.05); color: #009900 }
+.user-scope .gnb ul li:hover a{ color: #009900;  }
+.user-scope .gnb ul li.active{  background: #009900; color: #fff; opacity:1;  }
+.user-scope .gnb ul li.active svg{ opacity:1; }
+.user-scope .gnb ul li.active a{ color: #fff; }
+.user-scope .gnb ul i{ display: block; font-size: 16px; padding-bottom: 7px; }
+
+
+/* 페이지 컨텐츠 관련 좌측 메뉴  */
+.user-scope .lnb{ position:absolute; top:0px; left: 0px; font-size: 13px;  width: 100%; min-width: 210px; padding: 0px 0 15px 90px; min-height: 700px; }
+.user-scope .lnb h2{  text-align: center; text-transform:uppercase; color:rgba(0,0,0,.8); letter-spacing: 1px; padding: 10px 0 10px 0; letter-spacing: -1px; font: 600 16px/18px 'Noto Sans KR', SansSerif;}
+.user-scope .lnb h2 svg { display: block; font-size:20px;  margin: 0 auto 3px; width: 26px; height: 26px;color: #009900  }
+.user-scope .lnb h2 .comment{ font:400 12px "Malgun Gothic","맑은고딕" ,Sans-serif, Roboto, Arial; margin-top: 5px; opacity: .7; }
+.user-scope .subMenuList{ padding:0 0 20px 0; border-top:solid 1px rgba(0,0,0,.1);  }
+.user-scope .subMenuList li{ padding: 0; }
+.user-scope .subMenuList li a{ position:relative; display: block; padding:5px 10px 5px 20px;  cursor: pointer; font:500 14px 'Noto Sans KR',Sans-serif; line-height:150%;  border-bottom: solid 1px rgba(0,0,0,.08); color: rgba(0,0,0,.6); display: flex; justify-content: space-between; align-items: center; transition: .2s ease;}
+.user-scope .subMenuList li a svg{ opacity: .3; }
+.user-scope .subMenuList li a:hover{ background:rgba(0,210,255,.06); color: rgba(0,0,0,1); }
+.user-scope .subMenuList li a.active{ background:rgba(0,153,0,.1); color: #000;  margin-top:-1px;  font-weight: 600 }
+.user-scope .subMenuList li a.active svg{ color: #009900; opacity: 1; width:17px; height: 17px; }
+
+/* 좌측 메뉴 열고 닫기 버튼  */
+.user-scope .btn_lnb_open{ z-index:9999999; position: fixed; top: 270px; left:280px; border:solid 1px rgba(0,0,0,.2); border-width: 1px 1px 1px 0;
+    width: 20px; padding: 20px 0; text-align: center; border-radius:0 5px 5px 0; background: rgba(255,255,255,.95);
+    box-shadow: 1px 0px 3px rgba(0,0,0,.4) }
+.user-scope .btn_lnb_open a{ display: block }

@@ -1,0 +1,37 @@
+/* 모달 레이어 */
+.user-scope .modalSearchHeader{ position:fixed; top: 180px; left: 0;  width:279px;  height: 100%; z-index:9999999;   }
+
+.user-scope .modalSearchHeader .modal_box{ position: relative;  height: 100%; background: #fff;  font-size: 13px;  display: flex; flex-direction: column; overflow-y: auto; border-top: solid 1px rgba(0,0,0,.1); padding-bottom: 340px; }
+
+
+/* 닫기 버튼 */
+.user-scope .modalSearchHeader button.modalClose{ font-size: 22px; position: absolute; top:2px; right:2px; background: none; padding: 0; border: 0; outline: 0; opacity: .7; color:rgba(0,0,0,.6);  text-shadow: inset 0 2px 3px rgba(0,0,0,0.5); text-shadow: -1px -1px 0 white, 1px -1px 0 white, -1px 1px 0 white, 1px 1px 0 white; }
+
+
+/* 상단 대표 이미지 */  
+.user-scope .modalSearchHeader dl.searchResult{ width: 100%; margin: 0 auto; border-bottom: solid 1px rgba(0,0,0,.1); padding: 10px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
+
+.user-scope .modalSearchHeader dl.searchResult dt{ position: relative; width: 80px; height: 60px; overflow: hidden; border-radius: 5px; overflow: hidden; margin-right: 10px; }
+.user-scope .modalSearchHeader dl.searchResult dt img{ width: 100%; height: 100%; }
+.user-scope .modalSearchHeader dl.searchResult dt > span.category{ position: absolute; bottom:0; left: 0; background: rgba(0,0,0,.6); color: rgba(255,255,255,.8); font:400 11px "Malgun Gothic" ,"맑은고딕" ,Sans-serif, Roboto, Arial; display: inline-block; padding: 3px; display: none; }
+.user-scope .modalSearchHeader dl.searchResult dd{  flex: 1; min-width:0; width: 180px;  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;}
+.user-scope .modalSearchHeader dl.searchResult dd > ul li.placeName{ font:600 12px "Malgun Gothic" ,"맑은고딕" ,Sans-serif, Roboto, Arial;  color:#088d3b; display: block; white-space: nowrap;overflow: hidden; text-overflow: ellipsis; }
+.user-scope .modalSearchHeader dl.searchResult dd > ul li{ font-weight: 400; }
+.user-scope .modalSearchHeader dl.searchResult:hover{ background: rgba(0,0,0,.05); }
+
+.user-scope .modalSearchHeader .modal_box { transition: .2s ease; 
+        scrollbar-face-color:#ddd;/*스크롤*/
+        scrollbar-highlight-color:#ddd;/*하이라이트*/
+        scrollbar-3dlight-color:#ddd;/*왼쪽외곽음영*/
+        scrollbar-darkshadow-color:#ddd;/*오른쪽외곽음영*/
+        scrollbar-shadow-color:#ddd;/*오른쪽 안쪽음영*/
+        scrollbar-arrow-color:#ddd;/*화살*/
+        scrollbar-track-color:rgba(255,255,255,.1);/*스크롤영역*/
+    }
+.user-scope .modalSearchHeader .modal_box::-webkit-scrollbar{opacity:1; width:5px; height: 15px;}/*스크롤바*/
+.user-scope .modalSearchHeader .modal_box::-webkit-scrollbar-button {width:0; height: 0;}  /*스크롤바 버튼(아래 위 화살표)*/
+.user-scope .modalSearchHeader .modalmodal_boxContent::-webkit-scrollbar-thumb{background-color:rgba(0,0,0,.2); background-clip: padding-box;  border: 0px solid transparent;  border-radius: 10px;}/*스크롤바 핸들*/
+.user-scope .modalSearchHeader .modal_box::-webkit-scrollbar-track{background-color:rgba(255,255,255,1);}/*스크롤바 진행줄*/
+.user-scope .modalSearchHeader .modal_box::-webkit-scrollbar-corner {background:rgba(0,0,0,.08);}/*상하 좌우 스크롤이 만나는 공간*/
+
+

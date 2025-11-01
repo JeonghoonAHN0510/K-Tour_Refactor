@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>플레이스 현황 > K-Tour(테마형 관광지도 플랫폼)</title>
+    <meta name="Description" content="루트랩은 비즈니스에 꼭 필요한 기능만 간편하게 제공합니다." />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/reset.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/common.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/layout.css'>
+    <link rel="shortcut icon" href="../../resources/admin/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="../resources/admin/img/apple-touch-icon.png">
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/user.css'>
+
+<body>
+    <div id="container">
+        <!-- [1] header영역 html > js로 가져오기  -->
+        <script type="module" src='../layout/header.js'></script>
+
+        <!-- [2] aside(lnb) 영역 html > js로 가져오기  -->
+        <script type="module" src='../layout/asideLnb.js'></script>
+
+        <!-- ★ --------------------------- ★ main start ★ ----------------------------- ★ -->
+        <main class="contentsWrap">
+            <!-- [3] 페이지타이틀 html > js로 가져오기  -->
+            <script type="module" src='../layout/pageTitle.js'></script>
+            <!-- 좌우 양쪽 분할 섹션2 시작 -->
+            <div class="bothWrap">
+                <!-- R.검색/목록 시작 -->
+                <section class="listWrap">
+                    <!-- 상세 검색창 시작 -->
+                    <div class="detailSearch">
+                        <form>
+                            <label for="subsStatusInput"><b>콘텐츠타입</b>
+                                <select class="subsStatusInput" >
+                                    <option value="" selected>전체</option>
+                                    <option value="1">관광지</option>
+                                    <option value="2">문화시설</option>
+                                    <option value="3">행사/공연/축제</option>
+                                    <option value="4">여행코스</option>
+                                    <option value="5">레포츠</option>
+                                    <option value="6">숙박</option>
+                                    <option value="7">쇼핑</option>
+                                    <option value="8">음식점</option>
+                                </select>
+                            </label>
+                            <label for="subsStatusInput"><b>노출여부</b>
+                                <select class="subsStatusInput">
+                                    <option value="" selected>전체</option>
+                                    <option value="1">노출</option>
+                                    <option value="2">비노출</option>
+                                </select>
+                            </label>
+                            <label for=""><b>카테고리</b>
+                                <select class="">
+                                    <option value="" selected>대분류</option>
+                                    <option value="AC">숙박</option>
+                                    <option value="C01">추천코스</option>
+                                    <option value="EV">축제/공연/행사</option>
+                                    <option value="EX">체험관광</option>
+                                    <option value="FD">음식</option>>
+                                </select>
+
+                                <select class="">
+                                    <option value="" selected>중분류</option>
+                                    <option value="AC01">호텔</option>
+                                    <option value="AC02">콘도미니엄</option>
+                                    <option value="AC03">펜션/민박</option>
+                                    <option value="AC04">모텔</option>
+                                    <option value="AC05">캠핑</option>
+                                </select>
+
+                                <select class="">
+                                    <option value="" selected>소분류</option>
+                                    <option value="AC010100">호텔</option>
+                                    <option value="AC020100">콘도</option>
+                                    <option value="AC020200">레지던스</option>
+                                    <option value="AC030100">펜션</option>
+                                    <option value="AC030200">한옥스테이</option>
+                                </select>
+                            </label>
+                            
+                            <br>
+                            <label for=""><b>1차지역</b>
+                                <select class="subsStatusInput">
+                                    <option value="" selected>전체</option>
+                                    <option value="">서울</option>
+                                    <option value="">경기도</option>
+                                </select>
+                            </label>
+                            <label for=""><b>2차지역</b>
+                                <select class="">
+                                    <option value="" selected>전체</option>
+                                    <option value="">강남구</option>
+                                    <option value="">동작구</option>
+                                </select>
+                            </label>
+                            <label><b>주소명</b>
+                                <input type="text">
+                            </label>
+                            <label><b>대표전화</b>
+                                <input type="text">
+                            </label>
+                            <br/>
+                            <label><b>플레이스명</b>
+                                <input type="text">
+                            </label>
+                            <label><b>플레이스번호</b>
+                                <input type="text">
+                            </label>
+                            <button type="button" class="searchBtn">검색</button>
+                        </form>
+                    </div>
+                    <!-- 상세 검색창 끝 -->
+
+                    <!-- 목록 테이블 시작 -->
+                    <ul class="titleBox">
+                        <li class="result">검색결과 : @@개</li>
+                        <li class="btnBox">
+                            <select class="baseDateInput">
+                                <option value="10" selected>10개 보기</option>
+                                <option value="30">30개 보기</option>
+                                <option value="50">50개 보기</option>
+                            </select>
+                            <button type="button" class="btn line">엑셀 다운로드</button>
+                        </li>
+                    </ul>
+                    <div class="tableWrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>플레이스번호</th>
+                                    <th>플레이스명</th>
+                                    <th>콘텐츠타입</th>
+                                    <th>카테고리(소분류)</th>
+                                    <th>주소</th>
+                                    <th>대표전화</th>
+                                    <th>노출여부</th>
+                                    <th>등록일</th>
+                                    <th>수정일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="active">
+                                    <td>2</td>
+                                    <td>2932765</td>
+                                    <td><b>새해 맞이 불꽃쇼 & 소원 풍선 날리기 축제</b></td>
+                                    <td>행사/공연/축제</td>
+                                    <td>문화관광축제</td>
+                                    <td>강원특별자치도 고성군 삼포해변길 9 오션투유콘도</td>
+                                    <td>1666-1243</td>
+                                     <td>비노출</td>
+                                    <td>2025-00-00</td>
+                                    <td>2025-00-00</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>421977</td>
+                                    <td><b>고성명태축제</b></td>
+                                    <td>행사/공연/축제</td>
+                                    <td>문화관광축제</td>
+                                    <td>강원특별자치도 고성군 거진읍 대대리</td>
+                                    <td>033-681-0121,0122</td>
+                                     <td>노출</td>
+                                    <td>2025-00-00</td>
+                                    <td>2025-00-00</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 목록 테이블 끝 -->
+                </section>
+                <!-- R.검색/목록 끝 -->
+                <!-- CUD.등록/수정 시작 -->
+                <section class="registWrap">
+                    <!-- CUD.타이틀/버튼 시작 -->
+                    <div class="titleBox">
+                        <ul class="tabtitle">
+                            <li class="active">기본정보</li>
+                            <li>상세정보</li>
+                            <li>반복정보</li>
+                        </ul>
+                        <span class="btnBox">
+                            <button type="button" class="btn full" onclick="usersEdit()">저장</button>
+                            <button type="button" class="btn line" onclick="">삭제</button>
+                            <button type="button" class="btn line" onclick="usersAdd()">초기화</button>
+                        </span>
+                    </div>
+                    <!-- CUD.타이틀/버튼 끝 -->
+                    <!-- CUD.입/출력단 시작 -->
+                    <div class="formWrap">
+                        <div>
+                            <form>
+                                <h2>새해 맞이 불꽃쇼 & 소원 풍선 날리기 축제</h2>
+                                <div class="preview_map">지도영역</div>
+                                <label for=""><b>콘텐츠타입</b>
+                                    <select class="" disabled>
+                                        <option value="" selected>전체</option>
+                                        <option value="1">관광지</option>
+                                        <option value="2">문화시설</option>
+                                        <option value="3">행사/공연/축제</option>
+                                        <option value="4">여행코스</option>
+                                        <option value="5">레포츠</option>
+                                        <option value="6">숙박</option>
+                                        <option value="7">쇼핑</option>
+                                        <option value="8">음식점</option>
+                                    </select>
+                                </label>
+                                <label> <b>노출여부</b><input type="radio" checked> 노출 <input type="radio"> 비노출 </label>
+                                <br/>
+                                <label for=""><b>카테고리</b>
+                                    <select class="">
+                                        <option value="" selected>대분류</option>
+                                        <option value="AC">숙박</option>
+                                        <option value="C01">추천코스</option>
+                                        <option value="EV">축제/공연/행사</option>
+                                        <option value="EX">체험관광</option>
+                                        <option value="FD">음식</option>>
+                                    </select>
+                                    <select class="subsStatusInput">
+                                        <option value="" selected>중분류</option>
+                                        <option value="AC01">호텔</option>
+                                        <option value="AC02">콘도미니엄</option>
+                                        <option value="AC03">펜션/민박</option>
+                                        <option value="AC04">모텔</option>
+                                        <option value="AC05">캠핑</option>
+                                    </select>
+                                    <select class="subsStatusInput">
+                                        <option value="" selected>소분류</option>
+                                        <option value="AC010100">호텔</option>
+                                        <option value="AC020100">콘도</option>
+                                        <option value="AC020200">레지던스</option>
+                                        <option value="AC030100">펜션</option>
+                                        <option value="AC030200">한옥스테이</option>
+                                    </select>
+                                </label>
+                                <br>
+                                <label><b>플레이스명</b>
+                                    <input type="text">
+                                </label>
+                                <label><b>플레이스 번호</b>
+                                    <input type="text" disabled>
+                                </label>
+                                <br>
+                                <label for="zipCodeBtn"><b>기본주소</b>
+                                    <button type="button" id="zipCodeBtn">우편번호</button>
+                                    <input type="text" id="zipCodeInput" name="zipCodeInput" placeholder="우편번호" disabled />
+                                    <input type="text" id="addrInput" name="addrInput" placeholder="주소"  disabled/>
+                                    <div>
+                                        <b></b>
+                                        <input type="text" id="addrDetailInput" name="addrDetailInput" placeholder="상세주소 입력" class="input100" />
+                                    </div>
+                                </label>
+                                <br>
+                                
+                                <label><b>대표전화</b>
+                                    <input type="text">
+                                </label>
+                                <label><b>대표전화 설명</b>
+                                    <input type="text">
+                                </label>
+                                <br>
+                                <label><b>홈페이지</b>
+                                    <input type="text">
+                                </label>
+                                <br>
+                                <label for="memoInput"><b>개요설명</b><textarea class="memoInput"
+                                        placeholder="상세소개를 입력하세요."></textarea></label>
+                                <br>
+                                <label><b>마커이미지</b><input type="file"></label>
+                                <br>
+                                <label> <b>대표이미지</b><input type="file"><span> <span class="info_date">*이미지 사이즈: 800px(가로) * 600px(세로) 권장</span></label>
+                                <br>
+                                <label> <b>상세이미지1</b><input type="file"><span> <span class="info_date">*멀티업로드(~최대 10개/ 이미지별 용량제한 ~2MB)</span></label>
+                                <br>
+                                <label><b>이미지설명1</b>
+                                    <input type="text">
+                                </label>
+
+                            </form>
+                            <div class="info_date"><b>등록일:</b>2025-00-00 (00:00:00)<b>수정일:</b>2025-00-00 (00:00:00)</div>
+                            
+                                <button>저장</button>
+                                <button>삭제</button>
+                            <br>
+                        </div>
+                        <br>
+                        <hr>
+                        <br>
+                        <form>
+                            <h2>관광지 상세정보</h2> <span style="color: red;">이 영역은 콘텐트타입별로 컨포넌트를 만들어서 교체</span>
+                            <button>저장</button>
+                            <br>
+                            <label><b> 수용인원 </b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>유모차 대여정보 </b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>신용카드 가능정보 </b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>애완동물동반 가능정보</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>체험가능연령</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b> 체험안내 </b>
+                                <textarea></textarea>
+                            </label>
+                            <br>
+                            <label><b> 세계문화유산 유무 </b>
+                                <input type="text">
+                                <input type="text">
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>문의 및 안내</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>개장일 </b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>주차시설</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>쉬는날</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>이용시기</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <label><b>이용시간</b>
+                                <input type="text">
+                            </label>
+                        </form>
+                        <br>
+                        <div class="info_date"><b>등록일:</b>2025-00-00 (00:00:00)<b>수정일:</b>2025-00-00 (00:00:00)</div>
+                        <br>
+                        <hr>
+                        <br>
+
+                        <h2>반복정보</h2>
+                        <button>저장</button>
+                        <button>행추가</button>
+                        <form>
+                            <br>
+                            <label><b>제목</b>
+                                <input type="text">
+                            </label>
+                            <label><b>내용</b>
+                                <input type="text">
+                            </label>
+                            <br>
+                            <div class="info_date"><b>등록일:</b>2025-00-00 (00:00:00)<b>수정일:</b>2025-00-00 (00:00:00)</div>
+                        </form>
+                    </div>
+                    <!-- CUD.입/출력단 시작 -->
+                </section>
+                <!-- CUD.등록/수정 끝 -->
+            </div>
+            <!-- 좌우 양쪽 분할 섹션2 끝 -->
+
+        </main>
+        <!-- ★ --------------------------- ★ main End ★ ----------------------------- ★ -->
+
+        <!-- [4] footer html > js로 가져오기  -->
+        <script src='../layout/footer.js'></script>

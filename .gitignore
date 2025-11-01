@@ -35,3 +35,5 @@ out/
 
 ### VS Code ###
 .vscode/
+/src/main/resources/application.properties
+/src/main/resources/k-tour-team-projedct-firebase-adminsdk-fbsvc-77ac7c6554.json

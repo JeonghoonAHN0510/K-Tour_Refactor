@@ -1,0 +1,81 @@
+/* =================================
+메인 페이지 CSS
+====================================*/
+/* .main{ background: #0f5132 url(/map/img/bg_06.jpg) no-repeat top; background-size: cover; } */
+.main .header_wrap{ position:fixed; top:0px; left:auto; right:0; width: 80px; border:none; background:none; writing-mode: vertical-rl; min-width: auto; z-index: 10 }
+.main .header_wrap header h1{ font: 600 30px/40px Sans-serif; text-align: left; opacity: .6 }
+.main .header_wrap header h1 a{ color:rgba(255,255,255,1); /*  -webkit-text-stroke: 1px rgba(255,255,255,.2); */ text-shadow: -1px 0px rgba(0,0,0,.3), 0px 1px rgba(0,0,0,.3), 1px 0px rgba(0,0,0,.3), 0px -1px rgba(0,0,0,.3); }
+
+/* 좌측메뉴  */
+.main .lnb_wrap{  position:fixed; top:0px; left: 0px; width: 90px; min-width: 90px;  border-right:0; box-shadow: 2px 2px 2px rgba(0,0,0,.3) }
+.main .fixed_quick_menu{ height: 500px }
+.main .membership{ left: 0; bottom: 0;  }
+.fixed_quick_menu dt{ background:url("/map/img/em_ic.png") no-repeat center 10px;  padding-top:40px; background-size: 30px 30px; font-weight: 600 }
+
+/* 푸터 */
+.main .footer_wrap{ position:fixed;  width: 100%; min-width: 800px; height: 0px; background:none; border:0; z-index: 11;  }
+.main .copyright{ text-align: right; padding-right:10px; color: rgba(255,255,255,.7) }
+.main .to_top{ display: none }
+
+/* =================================
+ 메인 컨텐츠
+====================================*/
+
+.word_cloud_wrap{ max-width: 1200px; max-height: 150px;  margin:70px auto 0; padding:0; display: none; }
+.anychart-credits{ display: none !important; }
+
+.category_main{ display: flex; justify-content: center; flex-flow: row wrap; word-wrap: break-word; z-index: 11; padding-left: 50px;  }
+.category_main li{ padding-bottom: 10px; }
+.category_main li a{ display:inline-block; padding:5px 10px;  background:rgba(255,255,255,.7); border-radius: 20px; font:600 12px/16px 'Noto Sans KR',Sans-serif; color:rgba(0,0,0,.7); margin:20px 5px 5px 5px; text-align: center; transition: .2s ease;  }
+.category_main li a:hover{ background:rgba(255,255,255,.8);}
+.category_main li.active a{background:rgba(255,255,255,.99); color: #009900 }
+.category_main li a i{ display: block; font-size: 16px }
+
+.main_wrap{  position: relative; width: 100%; height:100%; /*min-height: 600px; */box-sizing: border-box; display: flex; justify-content: center; flex-direction:row; justify-content: space-between; word-wrap: break-word;  }
+.main_wrap:after{ content:""; display: block; clear:both; }
+/*.header_wrap{ display: none }*/
+
+.main_left_padding{ position: relative;top:0; left:0; width: 80px; height: 100%;  min-width: 80px;  flex: 0 0 auto;  }
+.main_left_padding:after{ content:""; display: block; clear:both; }
+
+.main_contents_center{ /* min-width: 900px; height:100%; */  }
+.main_contents_center:after{ content:""; display: block; clear:both; }
+
+.main_wrap .ai_card_skin{ min-width: 400px;  margin: 0 auto; padding:0 20px 5px 20px; width:100%; max-width:650px;  box-shadow: 1px 1px 5px rgba(0,0,0,.3); z-index: 2 }
+.main_wrap .ai_card_skin dl.ai_card { border-radius: 10px; border: 0; margin: 0 auto; box-shadow:none; padding: 20px 0; width: 94%; min-width: 400px  }
+.main_wrap .ai_card_skin > dt.header{ font:600 30px Sans-serif }
+.main_wrap .ai_card h2 label input[type=text] { width: 65%; }
+.main_wrap .ai_card label input[type=text],
+.main_wrap .ai_card label input[type=date],
+.main_wrap .ai_card label input[type=time]{ background:none; border:none; border-radius:0; padding:0px; margin: 0; font:500 18px/22px 'Noto Sans KR',Sans-serif;  }
+.main_wrap .ai_card > dt h2{ padding: 0 0 50px 0; text-align: center }
+.main_wrap .ai_card h2 label b{ display: none }
+.main_wrap .ai_card h2 label input[type=text]{ width:90%; margin:0 auto 0; font:600 28px/40px 'Noto Sans KR',Sans-serif; text-align: center }
+.main_wrap .ai_card label b{ margin-top:3px }
+.main_wrap .ai_card .form_info .date{ text-align: center }
+.main_wrap .ai_card .form_info .date i{ font-size: 18px }
+.main_wrap .ai_card .form_info .date label input{ width:130px }
+.main_wrap .ai_card .form_info .date label:nth-child(2) input{ width:130px }
+.main_wrap .ai_card .form_info .date label:nth-child(3) input{ width:40px }
+.main_wrap .form_info .memo b{ display: none }
+.main_wrap .ai_card .form_info .memo{ text-align: center }
+.main_wrap .ai_card .form_info .memo textarea{ width: 100%; border-color:rgba(0,0,0,.2); height: 20px; margin:0 auto; box-sizing: border-box; font:500 16px/22px 'Noto Sans KR',Sans-serif; text-align: center; padding-top: 12px }
+.main_wrap .ai_card .form_info .memo textarea::placeholder{  }
+
+.main_wrap .card_map_wrap{ margin:10px 10px 0 0; width: 280px; height: 320px; border-radius: 3px }
+.main_wrap .ai_card.design dd.body { display: flex; justify-content: center; flex-direction:row; justify-content: space-between; word-wrap: break-word; }
+.main_wrap .ai_card.design dd.body .layout_row:nth-child(1){ margin-right: 1%;  }
+.main_wrap .ai_card.design dd.body .layout_row{ flex:1 1 auto; }
+.main_wrap .ai_card.design dd.body .layout_row:nth-child(2){ flex:0 1 47%; }
+
+.main_wrap a.place_info_layer{ display:inline-block;  padding: 4px 8px; font:400 11px/11px Dotum,Arial;word-break: break-all; word-wrap:break-word; white-space:normal; text-align: center; vertical-align: middle; box-sizing: border-box; letter-spacing: -1px;  position: absolute; bottom: 1px; right: -5px; border-radius: 10px;  background:rgba(51,173,51,.07); color: #009900; border: solid 1px rgba(51,173,51,.4);  background:#009900; color: #fff; border:0;  }
+
+.main_wrap ul.summary_card{ padding-bottom: 1px }
+.main_wrap ul.summary_card .thumb{ width: 38%; height: 72px; position: relative; overflow: hidden }
+.main_wrap ul.summary_card > li .category{ position: absolute; top: auto; left: 0; bottom:0px;  margin-bottom: 0; opacity: .95; display: flex;flex-wrap: wrap; justify-content: center; flex-direction:row;  }
+.main_wrap ul.summary_card > li .category b{ font:500 11px/12px Sans-serif; letter-spacing: -1px;  }
+.main_wrap ul.summary_card > li .category b.depth_2{ flex-grow: 1 }
+
+@media (max-width: 1400px) {
+    .main_wrap ul.summary_card > li {width: 60% }
+}

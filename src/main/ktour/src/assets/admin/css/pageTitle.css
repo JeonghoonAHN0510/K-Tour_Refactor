@@ -1,0 +1,12 @@
+/* 2.2.1. 페이지 타이틀 */
+.admin-scope .pageTitle{ position: fixed; top:52px;  margin:0; display: flex;  align-items: flex-end; padding: 8px 30px 10px 18px; z-index: 1; background: rgba(255,255,255,1); }
+.admin-scope .pageTitle h1{ padding: 5px 7px; font-size: 18px; line-height: 100%; font-weight: 600; color: rgba(0,0,0,.9); }
+.admin-scope .path{ display: inline-block;  font-size: 11px; margin-bottom: 3px;  font-family: "Malgun Gothic", "맑은 고딕", Arial, sans-serif; opacity: .7; }
+.admin-scope .path::before{ content: 'Admin'; padding: 0 2px;  }
+.admin-scope .path a::before{ content: ' > '; color: rgba(0,0,0,.5); }
+
+
+/* ========== 반응형 =========== */
+ @media (max-width: 1100px){
+.admin-scope .pageTitle{  margin:0 10px 0 0px; padding: 8px 5px 8px 18px; width: 100%; background: rgba(255,255,255,1); z-index: 100;}
+ }

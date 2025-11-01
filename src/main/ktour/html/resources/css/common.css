@@ -1,0 +1,13 @@
+/* button */
+.btn{ display: inline-block; border: solid 1px rgba(0,0,0,.2); border-radius: 3px; padding: 1px 8px; color: rgba(0,0,0,7); background:rgba(0,0,0,.05); font-size: 13px; }
+.btn.line{ border-color: rgba(0, 191, 99, .6); color:  rgba(0, 191, 99, 1); background: rgb(255, 255, 255);}
+.btn.full{ background: rgba(0, 191, 99, 1); color: rgba(255,255,255,.99);  border: solid 1px rgba(0,0,0,.1); }
+
+button[type="submit"]{ background: rgba(0,0,0,.1); font-size: 13px; font-weight:500; background: rgba(0, 191, 99, 1); color:  rgba(255,255,255,.99); border:0; border-radius: 3px; padding: 1px 15px; border: solid 1px rgba(0,0,0,.1); }
+
+
+/* color */
+.green{ color: rgba(0, 191, 99, 1);  }
+
+.commingSoon{ display:flex; height: 100px; align-items: center;
+    justify-content:center; font-size:  30px; color: rgba(0,0,0,.3); ;}

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>사이트정보 > K-Tour(테마형 관광지도 플랫폼)</title>
+    <meta name="Description" content="루트랩은 비즈니스에 꼭 필요한 기능만 간편하게 제공합니다." />
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/reset.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/common.css'>
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/layout.css'>
+    <link rel="shortcut icon" href="../../resources/admin/img/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="../resources/admin/img/apple-touch-icon.png">
+    <link rel='stylesheet' type='text/css' media='screen' href='../../resources/admin/css/user.css'>
+
+<body>
+    <div id="container">
+        <!-- [1] header영역 html > js로 가져오기  -->
+        <script type="module" src='../layout/header.js'></script>
+
+        <!-- [2] aside(lnb) 영역 html > js로 가져오기  -->
+        <script type="module" src='../layout/asideLnb.js'></script>
+
+        <!-- ★ --------------------------- ★ main start ★ ----------------------------- ★ -->
+        <main class="contentsWrap">
+
+            <!-- [3] 페이지타이틀 html > js로 가져오기  -->
+            <script type="module" src='../layout/pageTitle.js'></script>
+            <!-- 좌우 양쪽 분할 섹션2 시작 -->
+            <div class="bothWrap">
+                <!-- R.검색/목록 시작 -->
+                <section class="listWrap">
+                    <!-- 상세 검색창 시작 -->
+                    <div class="detailSearch">
+                        <form action="#" method="get">
+                            <label for="sitePrivateInput"><b>공개여부</b>
+                                <select class="sitePrivateInput">
+                                    <option value="" selected>전체</option>
+                                    <option value="1">공개</option>
+                                    <option value="2">비공개</option>
+                                </select>
+                            </label>
+                            <!-- <label for="periodInput"><b>검색기간</b>
+                            <select class="baseDateInput">
+                            <option value="1" selected>생성일시</option>
+                            <option value="2">최종수정일시</option>
+                        </select>
+                        <input class="startDay" type="date" placeholder="시작일" /> ~ <input class="endDay" type="date" placeholder="종료일" />
+                        <select class="baseDateInput">
+                            <option value="1" selected>최근1주</option>
+                            <option value="2">최근1달</option>
+                            <option value="">전체</option>
+                        </select>
+                    </label> -->
+                            
+                            <label for="domainNameInput"><b>도메인(URL)</b><input class="domainNameInput" type="text"
+                                    placeholder="도메인명" /></label>
+                            <label for="siteNameInput"><b>사이트명</b><input class="siteNameInput" type="text"
+                            placeholder="사이트명" /></label>
+                            <button type="button"  class="searchBtn">
+                                검색</button>
+                        </form>
+                    </div>
+                    <!-- 상세 검색창 끝 -->
+                    <!-- 목록 테이블 시작 -->
+                    <ul class="titleBox">
+                        <li class="result">검색결과 : 2명</li>
+                        <li class="btnBox">
+                            <select class="baseDateInput">
+                                <option value="1" selected>10개 보기</option>
+                                <option value="2">30개 보기</option>
+                                <option value="">50개 보기</option>
+                            </select>
+                            <button type="button" class="btn line">엑셀 다운로드</button>
+                        </li>
+                    </ul>
+                    <div class="tableWrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>사이트명</th>
+                                    <th>도메인(URL)</th>
+                                    <th>대표전화</th>
+                                    <th>대표이메일</th>
+                                    <th>사이트공개여부</th>
+                                    <th>등록일</th>
+                                    <th>수정일</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="active">
+                                    <td>1</td>
+                                    <td>고성군 놀러가자!</td>
+                                    <td>goseong.ktour.kr</td>
+                                    <td>033-680-3114</td>
+                                    <td>goseong@tjoeun.com</td>
+                                    <td>공개</td>
+                                    <td>등록일</td>
+                                    <td>수정일</td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td><a href="#">부여군 놀러가자!</a></td>
+                                    <td>buyeo.ktour.kr</td>
+                                    <td>041-830-2114</td>
+                                    <td>buyeo@tjoeun.com</td>
+                                    <td>비공개</td>
+                                    <td>등록일</td>
+                                    <td>수정일</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- 목록 테이블 끝 -->
+                </section>
+                <!-- R.검색/목록 끝 -->
+                <!-- CUD.등록/수정 시작 -->
+                <section class="registWrap">
+                    <!-- CUD.타이틀/버튼 시작 -->
+                    <div class="titleBox">
+                        <ul class="tabtitle">
+                            <li class="active">기본정보</li>
+                        </ul>
+                        <span class="btnBox">
+                            <button type="button" class="btn full" onclick="siteEdit()">저장</button>
+                            <button type="button" class="btn line" onclick="">삭제</button>
+                        </span>
+                    </div>
+                    <!-- CUD.타이틀/버튼 끝 -->
+                    <!-- CUD.입/출력단 시작 -->
+                    <div class="formWrap">
+                        <form action="#" method="post" id="userForm">
+                            <fieldset>
+                                <label for="domain"><b>도메인(URL)</b><input class="domain" type="text" required
+                                        placeholder="도메인(URL)" disabled /></label>
+                                <button>바로가기</button>
+                                <br />
+                                <label for="siteNameInput"><b>사이트명</b><input class="siteNameInput" type="text" required
+                                        placeholder="사이트명" /></label>
+                                <span>
+                                    <label for="sitePrivateInput"><b>사이트공개여부</b>
+                                        <select class="sitePrivateInput">
+                                            <option value="1">공개</option>
+                                            <option value="2">비공개</option>
+                                        </select>
+                                    </label>
+                                </span>
+                                <br />
+                                <label for="phoneInput"><b>대표전화</b><input class="phoneInput" type="text" required
+                                        placeholder="대표전화" /></label>
+                                <label for="emailInput"><b>대표이메일</b><input type="text" class="emailInput"
+                                        name="emailInput" required placeholder="이메일" /></label>
+                                <br />
+                                <label for="nameInput"><b>개인정보책임자</b><input class="nameInput" type="text" required
+                                        placeholder="개인정보처리책임자" />
+                                </label>
+                                <label for="nameInput">
+                                    <b>관리자명(ID)</b>
+                                    <select disabled>
+                                        <option value="">이름(아이디)</option>
+                                    </select>
+                                </label>
+                                <br />
+                                <label for="siteInfoInput"><b>사이트소개</b><textarea class="siteInfoInput"
+                                        placeholder="사이트소개글"></textarea></label>
+                                <br />
+                                <label for="siteSearchKeywordInput"><b>검색키워드</b><textarea class="siteInfoInput"
+                                        placeholder="사이트소개글"></textarea></label>
+                                
+                                <br />
+                                <label for="memoInput"><b>이슈/메모</b><textarea class="memoInput"
+                                        placeholder="이슈/메모"></textarea></label>
+                                <br />
+                                
+                                <label for="siteLogoInput"><b>로고이미지</b><input type="file" class="siteLogoInput"
+                                        name="siteLogoInput" required placeholder="사이트로고이미지" />
+                                        <span class="info_date"> *이미지 사이즈: 120px(가로) * 50px(세로) 권장</span></label>
+                                <br>
+                                <label for="faviconInput"><b>파비콘이미지</b><input type="file" class="faviconInput"
+                                        name="faviconInput" required placeholder="파비콘이미지" />
+                                        <span class="info_date"> *이미지 사이즈: 80px(가로) * 80px(세로) 권장</span>
+                                    </label>
+                                <br>
+                                <label for="markerInput"><b>마커이미지</b><input type="file" class="markerInput"
+                                        name="markerInput" required placeholder="마커이미지" /></label>
+                                        <span class="info_date"> *이미지 사이즈: 500px(가로) * 500px(세로) 권장</span>
+                            </fieldset>
+                        </form>
+                         <div class="info_date"><b>등록일:</b>2025-00-00 (00:00:00)<b>수정일:</b>2025-00-00 (00:00:00)</div>
+                    </div>
+                    <!-- CUD.입/출력단 시작 -->
+                </section>
+                <!-- CUD.등록/수정 끝 -->
+            </div>
+            <!-- 좌우 양쪽 분할 섹션2 끝 -->
+
+        </main>
+        <!-- ★ --------------------------- ★ main End ★ ----------------------------- ★ -->
+
+        <!-- [4] footer html > js로 가져오기  -->
+        <script src='../layout/footer.js'></script>

@@ -1,0 +1,17 @@
+/** 관리자단 > 공통레이아웃 > 좌측메뉴(asideLnb)*/
+.admin-scope aside{ position: fixed; top:0; margin-top:49px; min-height: 100vh;  width: 180px; background: rgba(255,255,255,1); border-right: solid 1px rgba(0,0,0,.1); z-index: 0; }
+.admin-scope aside h2{ padding: 15px 0 12px 0; font-size: 18px; font-weight: 600; color: rgba(0,0,0,.8); text-align: center; color: rgba(0, 191, 99, 1);  }
+.admin-scope aside h2 > span{ color:rgba(0,0,0,.8) }
+.admin-scope aside h2 > svg{ display: block;  margin: 0 auto 2px; font-size: 20px; font-weight: 300; }
+.admin-scope aside > ul{ display: block; }
+
+.admin-scope aside > ul li a{ display: flex; justify-content: space-between; align-items: center;  padding: 5px 5px 5px 20px; font-size: 14px; font-weight: 500; color: rgba(0,0,0,.6); transition: .2s ease; }
+.admin-scope aside > ul li a svg{ font-size: 12px; opacity: .3; }
+.admin-scope aside > ul li a:hover{ color: rgba(0,0,0,.9);  }
+.admin-scope aside > ul li a.active{ background: rgb(235, 255, 245); color: rgba(0, 191, 99, 1); font-weight: 600; }
+.admin-scope aside > ul li a.active svg{ opacity: 1;  }
+
+/* ========== 반응형 =========== */
+ @media (max-width: 1200px){
+.admin-scope aside{ display: none;}
+ }

@@ -1,0 +1,27 @@
+/* 해더 */
+.user-scope .headerWrap{ position:fixed; top:0px; left: 0px; z-index: 999; width: 280px; height: 180px; margin:0 auto; border-right:solid 1px rgba(0,0,0,.3);  text-align: center;  background: #fff }
+
+.user-scope .headerWrap header{ position: relative; margin:0 auto; width: 100%;  }
+.user-scope .headerWrap header .search_box{ position: absolute; top:1px; right:2% }
+
+.user-scope .headerWrap header h1{ position:relative; width: 100%; text-align: left; letter-spacing: -0.5px; font:600 26px/30px 'Noto Sans KR', SansSerif; letter-spacing:-1px; padding:17px 0 13px 65px; }
+.user-scope .headerWrap header h1 a{ display: inline-block; /* background:url("/user/img/em_ic.png") no-repeat 0 2px; padding-left:33px;*/ background-size: 28px 28px; margin-left: -10px; }
+.user-scope .headerWrap header h1 a svg{ color:#009900; font-size:18px; margin:0 2px 3px 0; }
+.user-scope .headerWrap header h1 svg{ position:absolute; top:24px; left:20px; font-size:20px; opacity:.25; transition:.2s ease; }
+.user-scope .headerWrap header h1 svg:hover{ opacity:.9 }
+.user-scope .headerWrap header h1 span{ font:600 18px/20px 'Noto Sans KR', SansSerif; letter-spacing:-0.5px;  color: rgba(0,0,0,.9); display: inline-block; padding-left: 5px; }
+
+/* 페이지 검색창 */
+.user-scope .placeSearch{  width:90%; margin: 0 auto; overflow: hidden;  border:solid 1px rgba(0,0,0,.7); border-width:2px; border-radius: 7px; }
+.user-scope .placeSearch svg{ width: 17px; height: 17px; padding:0; color:#009900; }
+.user-scope .placeSearch input[type=search]{ caret-color: black; width:85%; font:600 14px/32px 'Noto Sans KR',Sans-serif; margin: 0; padding:0 5px 2px 2px;  color:#000; border:none; outline: 0; }
+.user-scope .placeSearch input::placeholder{ color:rgba(0,0,0,.3); font-size: 14px; }
+.user-scope .placeSearch button{ background: none; color: #009900; border: 0; width: 30px; }
+
+.user-scope .promotionText{  font:600 15px/15px 'Noto Sans KR',Sans-serif;  padding: 15px 0; letter-spacing: -0.5px; }
+.user-scope .promotionText b{ color:#009900;  }
+
+/* 법정동 1차/12차 지역선택 */
+.user-scope .ldongSelect{ position: absolute; bottom:-1px; left: 0; width: 100%; }
+.user-scope .ldongSelect > select{ width: 50%; margin: 0; border-radius: 0; border-width: 1px 0; font:600 13px/32px 'Noto Sans KR', SansSerif; padding: 7px 0 7px 10px; outline: 0; border-color:rgba(0,0,0,.15); background:rgba( 0,0,0,.03); color:rgba(0,0,0,.6); }
+.user-scope .ldongSelect > select:first-child{border-right-width:1px;}
