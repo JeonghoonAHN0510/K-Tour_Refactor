@@ -52,6 +52,7 @@ export default function RightCategory(props) {
                 <div className="rightContents">
                     <div className="pageTitle">
                         <h2><FontAwesomeIcon icon={faLocationDot} />{activeLDong}
+                            <button type="button" > <PushNotification /> </button>
                         </h2>
                         <ul className="cotentType">
                             {
