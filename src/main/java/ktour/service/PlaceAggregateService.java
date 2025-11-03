@@ -54,12 +54,12 @@ public class PlaceAggregateService {
      * @author OngTK
      */
     public Integer savePlaceBasicInfo(
-        PlaceInfoDto placeInfo,
-        MarkersGPSDto marker,
-        List<PlaceImageDetailDto> imagesMeta,
-        MultipartFile markerImage,
-        MultipartFile mainImage,
-        List<MultipartFile> detailImages
+            PlaceInfoDto placeInfo,
+            MarkersGPSDto marker,
+            List<PlaceImageDetailDto> imagesMeta,
+            MultipartFile markerImage,
+            MultipartFile mainImage,
+            List<MultipartFile> detailImages
     ) {
         // ---- [0] 유효성 ----
         if (placeInfo == null) return null;
@@ -87,9 +87,7 @@ public class PlaceAggregateService {
             placeInfo.setLdNo(lDongCodeDto.getLdNo());
 
             // ---- [3] PlaceInfo upsert → pNo 확보 ----
-            System.out.println(placeInfo);
             Integer pNo = upsertPlaceInfoAndGetPno(placeInfo);
-            System.out.println(pNo);
 
             // ---- [4] Marker upsert ----
             if (tmpMarkerFile != null) marker.setMkURL(tmpMarkerFile);
@@ -109,14 +107,12 @@ public class PlaceAggregateService {
             // [1] 기존 placeInfo를 가져오고 이미지를 제외한 정보를 삽입 > update
             Optional<PlaceInfoDto> getPlaceDto = placeInfoService.read(searchPno);
             PlaceInfoDto newPlaceDto = getPlaceDto.get();
-            System.out.println(newPlaceDto);
 
             // [1.1] ldNo 확인
             StringTokenizer st = new StringTokenizer(placeInfo.getAddr1(), " ");
             String lDongRegnNm = st.nextToken();
             String lDongSignguNm = st.nextToken();
             LDongCodeDto lDongCodeDto = lDongCodeService.lookforLdNo(lDongRegnNm, lDongSignguNm);
-            System.out.println(lDongCodeDto);
 
             // [1.2] 조회한 placeDto에 신규 데이터 삽입
             newPlaceDto.setLdNo(lDongCodeDto.getLdNo());

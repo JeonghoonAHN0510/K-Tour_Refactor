@@ -1,5 +1,6 @@
 package ktour.controller;
 
+import ktour.aop.annotation.PositiveParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -58,16 +59,6 @@ public class PlaceInfoController {
             @RequestParam(defaultValue = "true") boolean showflag,      // boolean -> Boolean
             @RequestParam(required = false) Integer pNo              // int -> Integer
     ) {
-        System.out.println("page = " + page
-                + ", size = " + size
-                + ", title = " + title
-                + ", address = " + address
-                + ", ccName = " + ccName
-                + ", ldName = " + ldName
-                + ", ctNo = " + ctNo
-                + ", showflag = " + showflag
-                + ", pNo = " + pNo);
-
         // [1.1] 페이지 처리 요청을 위한 PageRequest 개체 생성
         // 참고 정렬을 위한 sort 개체 생성 과정 생략
         PageRequest pageRequest = new PageRequest(page, size);
@@ -107,7 +98,6 @@ public class PlaceInfoController {
                 placeInfoCriteria.setTitle(title);
             }
             placeInfoCriteria.setShowflag(showflag);
-            System.out.println(placeInfoCriteria);
 
             result = placeInfoService.searchPage(placeInfoCriteria, pageRequest);
         } else {
@@ -151,12 +141,6 @@ public class PlaceInfoController {
             @RequestPart(value = "mainImage", required = false) MultipartFile mainImage,
             @RequestPart(value = "detailImages", required = false) List<MultipartFile> detailImages // multiple
     ) {
-        System.out.println("placeInfo = " + placeInfo + "\n" +
-                ", marker = " + marker + "\n" +
-                ", imagesMeta = " + imagesMeta + "\n" +
-                ", markerImage = " + markerImage + "\n" +
-                ", mainImage = " + mainImage + "\n" +
-                ", detailImages = " + detailImages);
 
         Integer pNo = placeAggregateService.savePlaceBasicInfo(
                 placeInfo, marker, imagesMeta, markerImage, mainImage, detailImages
@@ -189,9 +173,7 @@ public class PlaceInfoController {
      * @author OngTK
      */
     @DeleteMapping("/basic")
-    public ResponseEntity<?> deletePlaceBasicInfo(@RequestParam int pNo) {
-        System.out.println("PlaceInfoController.deletePlaceBasicInfo");
-        System.out.println("pNo = " + pNo);
+    public ResponseEntity<?> deletePlaceBasicInfo(@RequestParam @PositiveParam int pNo) {
         boolean result = placeInfoService.delete(pNo);
         return ResponseEntity.ok(result);
     } // func end
@@ -229,18 +211,6 @@ public class PlaceInfoController {
             // 반복 정보(JSON) 파트 - null 가능
             @RequestPart(value = "placeInfoRepeat", required = false) List<PlaceInfoRepeatDto> placeInfoRepeat
     ) {
-        System.out.println("PlaceInfoController.saveAllPlaceAndDetailInfo(POST)");
-        System.out.println("placeInfo = " + placeInfo +
-                "\n, marker = " + marker +
-                "\n, imagesMeta = " + imagesMeta +
-                "\n, markerImage = " + markerImage +
-                "\n, mainImage = " + mainImage +
-                "\n, detailImages = " + detailImages +
-                "\n, tourIntro = " + tourIntro +
-                "\n, festivalIntro = " + festivalIntro +
-                "\n, restaurantIntro = " + restaurantIntro +
-                "\n, placeInfoRepeat = " + placeInfoRepeat);
-
         Integer pNo2 = placeAggregateService.saveAllPlaceAndDetailInfo(
                 placeInfo, marker, imagesMeta,
                 markerImage, mainImage, detailImages,
@@ -280,17 +250,6 @@ public class PlaceInfoController {
             // 반복 정보(JSON) 파트 - null 가능
             @RequestPart(value = "placeInfoRepeat", required = false) List<PlaceInfoRepeatDto> placeInfoRepeat
     ) {
-        System.out.println("PlaceInfoController.updateAllPlaceAndDetailInfo(PUT)");
-        System.out.println("placeInfo = " + placeInfo +
-                " \n , marker = " + marker +
-                "\n, imagesMeta = " + imagesMeta +
-                "\n, markerImage = " + markerImage +
-                "\n, mainImage = " + mainImage +
-                "\n, detailImages = " + detailImages +
-                "\n, tourIntro = " + tourIntro +
-                "\n, festivalIntro = " + festivalIntro +
-                "\n, restaurantIntro = " + restaurantIntro +
-                "\n, placeInfoRepeat = " + placeInfoRepeat);
 
         if (placeInfo == null || placeInfo.getPNo() == 0) {
             return ResponseEntity.badRequest().body("pNo가 존재하지 않습니다.");

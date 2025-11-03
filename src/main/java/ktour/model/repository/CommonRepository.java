@@ -74,10 +74,8 @@ public interface CommonRepository<T, ID, C extends BaseCriteria> {
     default Page<T> findPage(PageRequest pageRequest) {
         // [5.1] 조회 시, 전체 레코드 수를 반환하는 method
         int total = countAll();
-        System.out.println("total : " +total);
         // [5.2] 페이지 처리 요청 객체를 매개변수로 해당 레코드를 가져오는 method
         List<T> content = findAllPaged(pageRequest);
-        System.out.println("pageRequest = " + pageRequest);
         // Page<> 생성자를 이용한 페이지 결과 객체 반환
         return new Page<>(content, total, pageRequest.getPage(), pageRequest.getSize());
     } // func end

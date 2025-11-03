@@ -1,5 +1,7 @@
 package ktour.controller;
 
+import ktour.aop.annotation.NotNullParam;
+import ktour.aop.annotation.PositiveParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +31,7 @@ public class TourIntroController {
      * @author OngTK
      */
     @PostMapping
-    public ResponseEntity<?> saveTourIntro(@RequestBody TourIntroDto dto) {
-        System.out.println("TourIntroController.saveTourIntro");
-        System.out.println("dto = " + dto);
+    public ResponseEntity<?> saveTourIntro(@RequestBody @NotNullParam TourIntroDto dto) {
         if (dto == null) {
             return ResponseEntity.status(460).body("입력된 정보가 올바르지 못함");
         }
@@ -47,7 +47,7 @@ public class TourIntroController {
      * @author OngTK
      */
     @GetMapping
-    public ResponseEntity<?> updateTourIntro(@RequestParam Integer pNo) {
+    public ResponseEntity<?> updateTourIntro(@RequestParam @NotNullParam @PositiveParam Integer pNo) {
         if (pNo == null) {
             return ResponseEntity.badRequest().body("pNo가 없습니다.");
         }
