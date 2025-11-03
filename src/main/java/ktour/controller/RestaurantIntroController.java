@@ -1,6 +1,8 @@
 package ktour.controller;
 
 
+import ktour.aop.annotation.NotNullParam;
+import ktour.aop.annotation.PositiveParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +34,7 @@ public class RestaurantIntroController {
      * @author OngTK
      */
     @PostMapping
-    public ResponseEntity<?> saveRestaurantIntro(@RequestBody RestaurantIntroDto dto) {
+    public ResponseEntity<?> saveRestaurantIntro(@RequestBody @NotNullParam RestaurantIntroDto dto) {
         System.out.println("RestaurantIntroController.saveRestaurantIntro");
         System.out.println("dto = " + dto);
         if (dto == null) {
@@ -51,7 +53,7 @@ public class RestaurantIntroController {
      * @author OngTK
      */
     @GetMapping
-    public ResponseEntity<?> readRestaurantIntro(@RequestParam int pNo) {
+    public ResponseEntity<?> readRestaurantIntro(@RequestParam @PositiveParam int pNo) {
         if (pNo == 0) {
             return ResponseEntity.status(460).body("입력된 정보가 올바르지 못함");
         }

@@ -29,6 +29,8 @@ dependencies {
     // 스프링 웹
     implementation 'org.springframework.boot:spring-boot-starter-web'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    // 스프링 AOP
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
 
     // 웹서버 소켓 라이브러리 설치
     implementation 'org.springframework.boot:spring-boot-starter-websocket'

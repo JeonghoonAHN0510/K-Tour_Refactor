@@ -1,6 +1,8 @@
 package ktour.controller;
 
 
+import ktour.aop.annotation.NotNullParam;
+import ktour.aop.annotation.PositiveParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +35,7 @@ public class FestivalIntroController {
      * @author OngTK
      */
     @PostMapping
-    public ResponseEntity<?> saveFestivalIntro(@RequestBody FestivalIntroDto dto) {
+    public ResponseEntity<?> saveFestivalIntro(@RequestBody @NotNullParam FestivalIntroDto dto) {
         System.out.println("FestivalIntroController.saveFestivalIntro");
         System.out.println("dto = " + dto);
         if (dto == null) {
@@ -52,7 +54,7 @@ public class FestivalIntroController {
      * @author OngTK
      */
     @GetMapping
-    public ResponseEntity<?> readFestivalIntro(@RequestParam int pNo) {
+    public ResponseEntity<?> readFestivalIntro(@RequestParam @PositiveParam int pNo) {
         if (pNo == 0) {
             return ResponseEntity.status(460).body("입력된 정보가 올바르지 못함");
         }

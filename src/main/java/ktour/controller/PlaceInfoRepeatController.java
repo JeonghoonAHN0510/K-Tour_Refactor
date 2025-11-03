@@ -1,5 +1,7 @@
 package ktour.controller;
 
+import ktour.aop.annotation.NotNullParam;
+import ktour.aop.annotation.PositiveParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +33,9 @@ public class PlaceInfoRepeatController {
      * @author OngTK
      */
     @PostMapping
-    public ResponseEntity<?> savePlaceRepeatInfo(@RequestBody List<PlaceInfoRepeatDto> list) {
-        System.out.println("PlaceInfoRepeatController.savePlaceRepeatInfo");
-        System.out.println("list = " + list);
+    public ResponseEntity<?> savePlaceRepeatInfo(@RequestBody @NotNullParam List<PlaceInfoRepeatDto> list) {
         // 들어온 정보가 없다면
-        if (list == null) {
-            return ResponseEntity.status(460).body("정보 없음");
-        }
+
         // service에 CUD 요청
         boolean result = placeInfoRepeatService.savePlaceRepeatInfo(list);
         // 결과 반환
@@ -61,10 +59,7 @@ public class PlaceInfoRepeatController {
      * @author OngTK
      */
     @GetMapping
-    public ResponseEntity<?> readPlaceRepeatInfo(@RequestParam int pno){
-        if(pno == 0){
-            return ResponseEntity.status(460).body("플레이스 번호가 올바르지 않습니다.");
-        }
+    public ResponseEntity<?> readPlaceRepeatInfo(@RequestParam @PositiveParam int pno){
         List<PlaceInfoRepeatDto> result = placeInfoRepeatService.readAllToPno(pno);
         return ResponseEntity.ok(result);
     } // func end
