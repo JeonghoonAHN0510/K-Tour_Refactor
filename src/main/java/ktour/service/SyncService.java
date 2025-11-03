@@ -113,4 +113,60 @@ public class SyncService {
     public int syncPlaceInfoRepeat(){
         return syncMapper.insertPlaceInfoRepeatFromOrigin();
     } // func end
+
+    public void syncAllTable(){
+        // 1. 법정동코드 테이블 생성
+        syncMapper.createLDongCodeTable();
+        // 2. 카테고리 테이블 생성
+        syncMapper.createCategoryTable();
+        // 3. 콘텐츠타입 테이블 생성
+        syncMapper.createContentTypeTable();
+        // 4. 플레이스정보 테이블 생성
+        syncMapper.createPlaceInfoTable();
+        // 5. 마커GPS 테이블 생성
+        syncMapper.createMarkersGPSTable();
+        // 6. 상세이미지 테이블 생성
+        syncMapper.createPlaceImageDetailTable();
+        // 7. 반려동물 테이블 생성
+        syncMapper.createDetailPetTourTable();
+        // 8. 관광지 테이블 생성
+        syncMapper.createTourIntroTable();
+        // 9. 축제행사공연 테이블 생성
+        syncMapper.createFestivalIntroTable();
+        // 10. 음식점 테이블 생성
+        syncMapper.createRestaurantIntroTable();
+        // 11. 반복정보 테이블 생성
+        syncMapper.createPlaceInfoRepeatTable();
+        // 12. 사이트정보 테이블 생성
+        syncMapper.createSiteInfoTable();
+        // 13. 관리자정보 테이블 생성
+        syncMapper.createManagerTable();
+        // 14. 푸시팝업 테이블 생성
+        syncMapper.createPushPopupTable();
+    } // func end
+
+    public void syncInsert(){
+        // 1. 콘텐츠타입 추가
+        syncMapper.insertContentTypeSample();
+        // 2. 카테고리 추가
+        syncMapper.insertCategoryCodeFromOrigin();
+        // 3. 법정동코드 추가
+        syncMapper.insertLDongCodeFromOrigin();
+        // 4. 플레이스정보 추가
+        syncMapper.insertPlaceInfoFromOrigin();
+        // 5. 마커GPS 추가
+        syncMapper.insertMarkersGPSFromOrigin();
+        // 6. 상세이미지 추가
+        syncMapper.insertPlaceImageDetailFromOrigin();
+        // 7. 반려동물 추가
+        syncMapper.insertDetailPetTourFromOrigin();
+        // 8. 관광지 추가
+        syncMapper.insertTourIntroFromOrigin();
+        // 9. 축제행사공연 추가
+        syncMapper.insertFestivalIntroFromOrigin();
+        // 10. 음식점 추가
+        syncMapper.insertRestaurantIntroFromOrigin();
+        // 11. 반복정보 추가
+        syncMapper.insertPlaceInfoRepeatFromOrigin();
+    } // func end
 } // class end

@@ -1,5 +1,8 @@
 package ktour.controller;
 
+import ktour.service.SyncService;
+import ktour.util.sql.SqlCreator;
+import ktour.util.tenancy.TenantContext;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +22,8 @@ import ktour.service.SiteInfoService;
 @RequiredArgsConstructor
 public class SiteInfoController {
     private final SiteInfoService siteInfoService;
+    private final SqlCreator sqlCreator;
+    private final SyncService syncService;
 
     /**
      * [SI-01] 사이트정보 검색
@@ -40,5 +45,24 @@ public class SiteInfoController {
         if (siDomain != null) siteInfoCriteria.setSiDomain(siDomain);
         if (siName != null) siteInfoCriteria.setSiName(siName);
         return ResponseEntity.ok(siteInfoService.searchSites(siteInfoCriteria));
+    } // func end
+
+    @GetMapping("/signup")
+    public ResponseEntity<?> signup(){
+        System.out.println("SiteInfoController.signup");
+        // 1. 테넌트ID 가져오기
+        String tenantID = TenantContext.getCurrentTenant();       // 예상 : goseong, incheon
+        // 2. 테넌트ID로 DB 생성하기
+        boolean result = sqlCreator.createDataBase(tenantID);
+        // 3. 정규화된 테이블 생성하기
+        syncService.syncAllTable();
+        // 4. API DB에서 데이터 복사하기
+        syncService.syncInsert();
+        // 5. 결과 반환
+        if (result){    // 성공했다면
+            return ResponseEntity.ok("서브도메인 가입 완료 : " + tenantID);
+        } else {        // 실패했다면
+            return ResponseEntity.ok("서브도메인 가입 실패 : " + tenantID);
+        } // if end
     } // func end
 } // class end
