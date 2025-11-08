@@ -170,35 +170,40 @@
             pi.*,
             c1.contentTypeName  AS contentTypeName,
             c2.lclsSystm3Nm     AS lclsSystm3Nm
-            FROM placeInfo pi
-            LEFT JOIN contenttype c1
-            ON pi.ctNo = c1.ctNo
-            LEFT JOIN categoryCode c2
-            ON pi.ccNo = c2.ccNo
-            WHERE pi.showflag = 1
-            ORDER BY pi.pNo DESC
-        LIMIT  #{pageRequest.limit}
+        FROM placeInfo pi
+                 LEFT JOIN contenttype c1
+                           ON pi.ctNo = c1.ctNo
+                 LEFT JOIN categoryCode c2
+                           ON pi.ccNo = c2.ccNo
+        WHERE pi.showflag = 1
+        ORDER BY pi.pNo DESC
+            LIMIT  #{pageRequest.limit}
         OFFSET #{pageRequest.offset}
     </select>
 
     <select id="searchPlacesByUsers">
-        SELECT kpi.pNo, kpi.title, kpi.addr1, kpi.addr2, kpi.tel, kpi.firstimage2, kcc.lclsSystm3Nm, kmg.mapx, kmg.mapy, kpi.ctNo,
-               ST_Distance_Sphere(POINT(kmg.mapx, kmg.mapy), -- DB에 저장된 장소의 좌표
-                                  POINT(#{lng}, #{lat})         -- API로 전달받은 사용자의 현재 좌표
-                                  ) AS distance
+        SELECT
+            kpi.pNo, kpi.title, kpi.addr1, kpi.addr2, kpi.tel, kpi.firstimage2, kcc.lclsSystm3Nm, kmg.mapx, kmg.mapy, kpi.ctNo,
+            ( 6371000 * 2 *
+              ASIN(
+                      SQRT(
+                              POW(SIN((RADIANS(#{lat}) - RADIANS(kmg.mapy)) / 2), 2)
+                                  + COS(RADIANS(kmg.mapy))
+                                  * COS(RADIANS(#{lat}))
+                                  * POW(SIN((RADIANS(#{lng}) - RADIANS(kmg.mapx)) / 2), 2)
+                      ))
+                ) AS distance
         FROM placeinfo kpi
-        JOIN markersgps kmg
-        USING (pNo)
-        JOIN categorycode kcc
-        USING (ccNo)
+                 JOIN markersgps kmg USING (pNo)
+                 JOIN categorycode kcc USING (ccNo)
         WHERE kpi.showflag = 1
           AND (
-            kpi.title   LIKE CONCAT('%', #{keyword}, '%')
-         OR kpi.addr1   LIKE CONCAT('%', #{keyword}, '%')
-         OR kpi.addr2   LIKE CONCAT('%', #{keyword}, '%')
-         OR kpi.overview LIKE CONCAT('%', #{keyword}, '%')
-          )
+            kpi.title    LIKE CONCAT('%', #{keyword}, '%')
+                OR kpi.addr1    LIKE CONCAT('%', #{keyword}, '%')
+                OR kpi.addr2    LIKE CONCAT('%', #{keyword}, '%')
+                OR kpi.overview LIKE CONCAT('%', #{keyword}, '%')
+            )
         ORDER BY distance
-        LIMIT 10;
+            LIMIT 10;
     </select>
 </mapper>
